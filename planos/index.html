@@ -3,30 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexxo | Oferta</title>
+<title>Nexxo | Planos</title>
+<link rel="icon" href="/assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0D1315; --bg-elevated:#141C1F; --bg-card:#161F22;
-    --line:rgba(244,247,246,0.09); --line-strong:rgba(244,247,246,0.18);
-    --signal:#00E5A0; --signal-dim:rgba(0,229,160,0.10);
-    --warm:#FFB648; --warm-dim:rgba(255,182,72,0.10);
-    --text:#F4F7F6; --text-muted:#93A3A0; --text-faint:#5E6E6B;
-    --font-display:'Space Grotesk',sans-serif; --font-body:'Inter',sans-serif; --font-mono:'IBM Plex Mono',monospace;
+    --bg:#141B1F; --bg-elevated:#1B242A; --bg-card:#1C262C;
+    --line:rgba(255,255,255,0.09); --line-strong:rgba(255,255,255,0.16);
+    --orange:#F06A29; --orange-dim:rgba(240,106,41,0.12);
+    --teal:#1BA892; --teal-dim:rgba(27,168,146,0.14);
+    --text:#FFFFFF; --text-muted:rgba(255,255,255,0.72); --text-faint:rgba(255,255,255,0.48);
+    --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif;
     --radius:16px; --max:920px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;}
   .wrap{max-width:var(--max); margin:0 auto; padding:56px 24px 80px;}
-  h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:-0.01em;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em;}
 
   /* HERO */
   .hero{text-align:center; margin-bottom:60px;}
-  .logo{font-family:var(--font-display); font-weight:700; font-size:22px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:26px;}
-  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--signal);}
+  .logo{font-family:var(--font-display); font-weight:800; font-size:22px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:26px;}
+  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--orange);}
   .hero h1{font-size:clamp(30px,5vw,44px); line-height:1.12; margin-bottom:16px;}
-  .hero h1 em{font-style:normal; color:var(--signal);}
+  .hero h1 em{font-style:normal; color:var(--orange);}
   .hero p{color:var(--text-muted); font-size:16px; max-width:520px; margin:0 auto;}
 
   /* PLANS */
@@ -36,24 +37,24 @@
     border:1px solid var(--line-strong); border-radius:var(--radius); padding:28px 24px;
     background:var(--bg-card); display:flex; flex-direction:column; position:relative;
   }
-  .plan.featured{border-color:var(--signal); background:linear-gradient(180deg, rgba(0,229,160,0.06), var(--bg-card) 40%);}
+  .plan.featured{border-color:var(--orange); background:linear-gradient(180deg, rgba(240,106,41,0.08), var(--bg-card) 40%);}
   .plan-badge{
-    position:absolute; top:-12px; left:24px; background:var(--signal); color:#04241A;
-    font-size:11px; font-weight:600; padding:5px 12px; border-radius:999px; font-family:var(--font-mono);
+    position:absolute; top:-12px; left:24px; background:var(--orange); color:#fff;
+    font-size:11px; font-weight:600; padding:5px 12px; border-radius:999px; font-family:var(--font-body);
   }
-  .plan-name{font-family:var(--font-display); font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;}
+  .plan-name{font-family:var(--font-display); font-weight:600; font-size:14px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;}
   .plan-cycle{font-size:12.5px; color:var(--text-faint); margin-bottom:20px;}
   .plan-price{display:flex; align-items:baseline; gap:5px; margin-bottom:2px;}
-  .plan-price .amount{font-family:var(--font-display); font-size:32px; font-weight:600;}
+  .plan-price .amount{font-family:var(--font-display); font-size:32px; font-weight:700;}
   .plan-price .period{font-size:13px; color:var(--text-muted);}
-  .plan-total{font-size:12.5px; color:var(--text-faint); margin-bottom:22px; font-family:var(--font-mono);}
+  .plan-total{font-size:12.5px; color:var(--text-faint); margin-bottom:22px;}
   .plan ul{list-style:none; margin-bottom:8px;}
   .plan li{
     font-size:13.5px; color:var(--text-muted); padding:9px 0 9px 20px; position:relative;
     border-top:1px solid var(--line);
   }
   .plan li:first-child{border-top:none;}
-  .plan li::before{content:'+'; position:absolute; left:0; top:9px; color:var(--signal); font-family:var(--font-mono);}
+  .plan li::before{content:'+'; position:absolute; left:0; top:9px; color:var(--teal); font-weight:600;}
   .plan li.included{color:var(--text-faint); font-style:italic;}
 
   /* ADDON */
@@ -63,11 +64,11 @@
   }
   .addon-head{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
   .addon-head h3{font-size:16px;}
-  .addon-tag{font-family:var(--font-mono); font-size:11px; color:var(--warm); background:var(--warm-dim); padding:4px 10px; border-radius:999px;}
+  .addon-tag{font-family:var(--font-body); font-weight:600; font-size:11px; color:var(--teal); background:var(--teal-dim); padding:4px 10px; border-radius:999px;}
   .addon p{color:var(--text-muted); font-size:13.5px; margin-bottom:16px;}
   .addon-prices{display:flex; gap:24px; flex-wrap:wrap;}
-  .addon-prices div{font-family:var(--font-mono); font-size:13px; color:var(--text);}
-  .addon-prices span{display:block; font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:3px;}
+  .addon-prices div{font-family:var(--font-body); font-weight:600; font-size:13px; color:var(--text);}
+  .addon-prices span{display:block; font-size:11px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:3px; font-weight:400;}
 
   /* HOW IT WORKS */
   .how{margin-bottom:52px;}
@@ -75,7 +76,7 @@
   .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
   @media (max-width:760px){ .steps{grid-template-columns:1fr 1fr;} }
   .step{text-align:center;}
-  .step .num{font-family:var(--font-mono); color:var(--signal); font-size:12px; display:block; margin-bottom:8px;}
+  .step .num{font-family:var(--font-display); font-weight:600; color:var(--teal); font-size:12px; display:block; margin-bottom:8px;}
   .step p{font-size:13px; color:var(--text-muted);}
 
   /* CTA */
@@ -86,11 +87,12 @@
   .cta h2{font-size:22px; margin-bottom:10px;}
   .cta p{color:var(--text-muted); font-size:14px; margin-bottom:24px;}
   .btn{
-    display:inline-flex; align-items:center; gap:8px; background:var(--signal); color:#04241A;
+    display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:#fff;
     font-family:var(--font-body); font-weight:600; font-size:15px; padding:14px 28px;
-    border-radius:999px; text-decoration:none;
+    border-radius:999px; text-decoration:none; transition:opacity .15s;
   }
-  .footer-note{text-align:center; margin-top:28px; font-size:12px; color:var(--text-faint); font-family:var(--font-mono);}
+  .btn:hover{opacity:0.88;}
+  .footer-note{text-align:center; margin-top:28px; font-size:12px; color:var(--text-faint); font-family:var(--font-display); font-weight:500; letter-spacing:0.02em;}
 </style>
 </head>
 <body>
