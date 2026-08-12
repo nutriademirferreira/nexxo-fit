@@ -20,13 +20,13 @@
   body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;}
 
   video.bg-video{
-    position:fixed; top:50%; left:50%; min-width:100%; min-height:100%;
-    width:auto; height:auto; transform:translate(-50%,-50%);
-    object-fit:cover; z-index:0;
+    position:fixed; top:-4%; left:50%; width:78%; max-width:620px; height:auto;
+    transform:translateX(-50%);
+    z-index:0;
   }
   .overlay{
     position:fixed; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.75) 100%);
+    background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.8) 100%);
   }
   .card{
     position:relative; z-index:2; height:100%;
