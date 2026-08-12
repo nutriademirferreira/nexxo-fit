@@ -16,10 +16,17 @@
     --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6; min-height:100vh;}
+  body{
+    background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  }
 
   .video-wrap{position:relative; width:100%; line-height:0;}
   .video-wrap video{display:block; width:100%; height:auto;}
+  .video-wrap::before{
+    content:''; position:absolute; left:0; right:0; top:0; height:22%;
+    background:linear-gradient(0deg, transparent 0%, var(--bg) 100%);
+  }
   .video-wrap::after{
     content:''; position:absolute; left:0; right:0; bottom:0; height:30%;
     background:linear-gradient(180deg, transparent 0%, var(--bg) 100%);
