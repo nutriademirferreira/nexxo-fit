@@ -64,8 +64,38 @@
     border-top:1px solid var(--line);
   }
   .plan li:first-child{border-top:none;}
-  .plan li::before{content:'+'; position:absolute; left:0; top:9px; color:var(--teal); font-weight:600;}
-  .plan li.included{color:var(--text-faint); font-style:italic;}
+  .plan li.included{padding:9px 0 9px 20px; position:relative; color:var(--text-faint); font-style:italic; font-size:13.5px;}
+  .plan li.included::before{content:'+'; position:absolute; left:0; top:9px; color:var(--teal); font-weight:600;}
+  .item-toggle{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%;
+    background:none; border:none; text-align:left; cursor:pointer;
+    font-family:var(--font-body); font-size:13.5px; color:var(--text-muted);
+    padding:9px 0 9px 20px; position:relative;
+  }
+  .item-toggle::before{content:'+'; position:absolute; left:0; color:var(--teal); font-weight:600;}
+  .item-toggle .chevron{font-family:var(--font-body); font-weight:600; color:var(--text-faint); font-size:13px; flex-shrink:0; transition:transform 0.2s ease;}
+  li.open .item-toggle .chevron{ transform:rotate(45deg); }
+  .item-desc{max-height:0; overflow:hidden; transition:max-height 0.25s ease;}
+  .item-desc p{font-size:12.5px; color:var(--text-faint); line-height:1.5; padding:0 0 12px 20px;}
+
+  /* MENTORIA HIGHLIGHT */
+  .mentoria{
+    border:1px solid var(--orange); border-radius:var(--radius); padding:32px 30px;
+    margin-bottom:24px; background:linear-gradient(135deg, rgba(240,106,41,0.08), var(--bg-card) 55%);
+    position:relative;
+  }
+  .mentoria-tag{
+    display:inline-flex; align-items:center; gap:6px; font-family:var(--font-body); font-weight:600; font-size:11px;
+    color:#fff; background:var(--orange); padding:5px 12px; border-radius:999px; margin-bottom:16px;
+  }
+  .mentoria h3{font-size:20px; margin-bottom:8px;}
+  .mentoria > p{color:var(--text-muted); font-size:14px; max-width:560px; margin-bottom:22px;}
+  .mentoria-included{font-family:var(--font-body); font-weight:600; font-size:11.5px; color:var(--orange); margin-bottom:18px;}
+  .specialists{display:flex; flex-wrap:wrap; gap:8px;}
+  .specialist{
+    font-size:12.5px; color:var(--text); background:var(--bg-elevated); border:1px solid var(--line-strong);
+    padding:7px 14px; border-radius:999px;
+  }
 
   /* ADDON */
   .addon{
@@ -122,16 +152,16 @@
       <div class="plan-price"><span class="amount">R$498</span><span class="period">/mês</span></div>
       <div class="plan-total">R$1.494 no ciclo · 3x sem juros</div>
       <ul>
-        <li>Questionário inicial integrado</li>
-        <li>Plano alimentar + treino personalizados</li>
-        <li>App único de nutrição e treino</li>
-        <li>Grupo de suporte no WhatsApp</li>
-        <li>Avaliação física inicial</li>
-        <li>Check-in semanal com feedback</li>
-        <li>Treino atualizado 3x no ciclo</li>
-        <li>Entrega de Resultados ao fim do ciclo</li>
-        <li>Reavaliação física periódica</li>
-        <li>Desconto em suplementos parceiros</li>
+        <li><button class="item-toggle">Questionário inicial integrado<span class="chevron">+</span></button><div class="item-desc"><p>Vamos aprofundar nas suas necessidades para personalizar ao máximo sua alimentação e seu treino.</p></div></li>
+        <li><button class="item-toggle">Plano alimentar + treino entregue em no máximo 48h<span class="chevron">+</span></button><div class="item-desc"><p>Preencheu o formulário? A partir de agora é só aguardar: seu treino e dieta, otimizados para o seu objetivo, chegam em até 2 dias úteis.</p></div></li>
+        <li><button class="item-toggle">App único de nutrição e treino<span class="chevron">+</span></button><div class="item-desc"><p>Dieta, treino e evolução no mesmo app, sem precisar alternar entre plataformas diferentes.</p></div></li>
+        <li><button class="item-toggle">Grupo de suporte no WhatsApp<span class="chevron">+</span></button><div class="item-desc"><p>Um grupo de suporte só seu, com nosso time de seres humanos reais (aqui não usamos IA), que vão tirar suas dúvidas o mais rápido possível.</p></div></li>
+        <li><button class="item-toggle">Avaliação física inicial<span class="chevron">+</span></button><div class="item-desc"><p>Ponto de partida pra acompanhar sua evolução real ao longo do plano.</p></div></li>
+        <li><button class="item-toggle">Check-in semanal com feedback<span class="chevron">+</span></button><div class="item-desc"><p>Toda semana olhamos para o seu progresso e te damos retorno, sem você precisar pedir.</p></div></li>
+        <li><button class="item-toggle">Treino atualizado 3x no ciclo<span class="chevron">+</span></button><div class="item-desc"><p>Seu treino muda conforme seu corpo evolui, não fica parado no mesmo lugar o ciclo inteiro.</p></div></li>
+        <li><button class="item-toggle">Entrega de Resultados ao fim do ciclo<span class="chevron">+</span></button><div class="item-desc"><p>Fotos, medidas e evolução, mostrados de forma clara ao longo do seu ciclo.</p></div></li>
+        <li><button class="item-toggle">Reavaliação física periódica<span class="chevron">+</span></button><div class="item-desc"><p>Sua avaliação é refeita ao longo do tempo, pra acompanhar o que realmente mudou.</p></div></li>
+        <li><button class="item-toggle">Desconto em suplementos parceiros<span class="chevron">+</span></button><div class="item-desc"><p>Condição especial em suplementos com parceiros da Nexxo, se você optar por usar.</p></div></li>
       </ul>
     </div>
 
@@ -143,12 +173,12 @@
       <div class="plan-total">R$2.194 no ciclo · 6x sem juros</div>
       <ul>
         <li class="included">Tudo do Nexxo Basic</li>
-        <li>Avaliação postural com PDF</li>
-        <li>Treino atualizado 6x no ciclo</li>
-        <li>Sessão com psicóloga do time</li>
-        <li>Recuperação corporal com desconto</li>
-        <li>Suporte iFood (até 5 restaurantes)</li>
-        <li>Entrega de Resultados aos 3 e 6 meses</li>
+        <li><button class="item-toggle">Avaliação postural com PDF<span class="chevron">+</span></button><div class="item-desc"><p>Seu treino é montado em cima dessa avaliação. Os pontos de atenção que encontramos aqui têm impacto direto no seu resultado e na sua qualidade de vida. Você recebe tudo num PDF completo.</p></div></li>
+        <li><button class="item-toggle">Treino atualizado 6x no ciclo<span class="chevron">+</span></button><div class="item-desc"><p>Seu treino muda conforme seu corpo evolui, não fica parado no mesmo lugar o ciclo inteiro.</p></div></li>
+        <li><button class="item-toggle">Sessão com psicóloga do time<span class="chevron">+</span></button><div class="item-desc"><p>Um espaço com profissional de psicologia do time, pra apoiar o lado emocional do processo.</p></div></li>
+        <li><button class="item-toggle">Recuperação corporal com desconto<span class="chevron">+</span></button><div class="item-desc"><p>Desconto em liberação miofascial, ventosaterapia e drenagem linfática com parceiros.</p></div></li>
+        <li><button class="item-toggle">Suporte iFood (até 5 restaurantes)<span class="chevron">+</span></button><div class="item-desc"><p>Envie seus restaurantes preferidos no iFood e nós analisamos o cardápio; você recebe um PDF com as melhores opções pra sua dieta em cada restaurante.</p></div></li>
+        <li><button class="item-toggle">Entrega de Resultados aos 3 e 6 meses<span class="chevron">+</span></button><div class="item-desc"><p>Fotos, medidas e evolução, mostrados de forma clara ao longo do seu ciclo.</p></div></li>
       </ul>
     </div>
 
@@ -159,12 +189,29 @@
       <div class="plan-total">R$3.096 no ciclo · 12x sem juros</div>
       <ul>
         <li class="included">Tudo do Nexxo Advanced</li>
-        <li>Treino atualizado 10 a 12x no ciclo</li>
-        <li>Entrega de Resultados a cada 3 meses</li>
-        <li>Melhor custo-benefício por mês</li>
+        <li><button class="item-toggle">Treino atualizado 10 a 12x no ciclo<span class="chevron">+</span></button><div class="item-desc"><p>Seu treino muda conforme seu corpo evolui, não fica parado no mesmo lugar o ciclo inteiro.</p></div></li>
+        <li><button class="item-toggle">Entrega de Resultados a cada 3 meses<span class="chevron">+</span></button><div class="item-desc"><p>Fotos, medidas e evolução, mostrados de forma clara ao longo do seu ciclo.</p></div></li>
+        <li class="included">Melhor custo-benefício por mês</li>
       </ul>
     </div>
 
+  </div>
+
+  <div class="mentoria">
+    <span class="mentoria-tag">★ diferencial Nexxo</span>
+    <h3>Mentoria quinzenal com especialistas</h3>
+    <p>A cada quinzena, um especialista diferente entra ao vivo, online, pra você conversar e tirar dúvida direto com quem entende do assunto. Não é conteúdo gravado, é conversa de verdade.</p>
+    <div class="mentoria-included">✓ incluída em todos os planos, sem custo extra</div>
+    <div class="specialists">
+      <span class="specialist">Médico do esporte</span>
+      <span class="specialist">Endócrino</span>
+      <span class="specialist">Ginecologista</span>
+      <span class="specialist">Fisioterapeuta</span>
+      <span class="specialist">Ortopedista</span>
+      <span class="specialist">Treinador</span>
+      <span class="specialist">Dermatologista</span>
+      <span class="specialist">Esteticista</span>
+    </div>
   </div>
 
   <div class="addon">
@@ -199,5 +246,22 @@
   <p class="footer-note">nexxo · @consultoria.nexxo</p>
 
 </div>
+
+<script>
+  document.querySelectorAll('.item-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const li = btn.closest('li');
+      const desc = li.querySelector('.item-desc');
+      const isOpen = li.classList.contains('open');
+      if (isOpen) {
+        li.classList.remove('open');
+        desc.style.maxHeight = null;
+      } else {
+        li.classList.add('open');
+        desc.style.maxHeight = desc.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
 </body>
 </html>
