@@ -18,6 +18,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* GRADIENT BUTTON */
+  @property --pos-x { syntax:'<percentage>'; initial-value:11.14%; inherits:false; }
+  @property --pos-y { syntax:'<percentage>'; initial-value:140%; inherits:false; }
+  @property --spread-x { syntax:'<percentage>'; initial-value:150%; inherits:false; }
+  @property --spread-y { syntax:'<percentage>'; initial-value:180.06%; inherits:false; }
+  @property --gb-color-1 { syntax:'<color>'; initial-value:#000000; inherits:false; }
+  @property --gb-color-2 { syntax:'<color>'; initial-value:#2c0f01; inherits:false; }
+  @property --gb-color-3 { syntax:'<color>'; initial-value:#4e2e1e; inherits:false; }
+  @property --gb-color-4 { syntax:'<color>'; initial-value:#705446; inherits:false; }
+  @property --gb-color-5 { syntax:'<color>'; initial-value:#885339; inherits:false; }
+  @property --border-angle { syntax:'<angle>'; initial-value:20deg; inherits:true; }
+  @property --border-color-1 { syntax:'<color>'; initial-value:hsla(20,75%,60%,0.2); inherits:true; }
+  @property --border-color-2 { syntax:'<color>'; initial-value:hsla(20,75%,40%,0.75); inherits:true; }
+  @property --stop-1 { syntax:'<percentage>'; initial-value:37.35%; inherits:false; }
+  @property --stop-2 { syntax:'<percentage>'; initial-value:61.36%; inherits:false; }
+  @property --stop-3 { syntax:'<percentage>'; initial-value:78.42%; inherits:false; }
+  @property --stop-4 { syntax:'<percentage>'; initial-value:89.52%; inherits:false; }
+  @property --stop-5 { syntax:'<percentage>'; initial-value:100%; inherits:false; }
+
   :root{
     --bg:#141B1F;
     --orange:#F06A29; --orange-dim:rgba(240,106,41,0.14);
@@ -58,11 +77,44 @@
   h1 em{font-style:normal; color:var(--orange);}
   p{color:var(--text-muted); font-size:15px; margin-bottom:32px;}
   .btn{
-    display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:#fff;
+    position:relative; appearance:none; cursor:pointer; border:none;
+    display:inline-flex; align-items:center; gap:8px; color:#fff;
     font-family:var(--font-body); font-weight:600; font-size:15px; padding:14px 28px;
-    border-radius:999px; text-decoration:none; transition:opacity .15s;
+    border-radius:999px; text-decoration:none;
+    background:radial-gradient(var(--spread-x) var(--spread-y) at var(--pos-x) var(--pos-y),
+      var(--gb-color-1) var(--stop-1), var(--gb-color-2) var(--stop-2), var(--gb-color-3) var(--stop-3),
+      var(--gb-color-4) var(--stop-4), var(--gb-color-5) var(--stop-5));
+    transition:
+      --pos-x .5s, --pos-y .5s, --spread-x .5s, --spread-y .5s,
+      --gb-color-1 .5s, --gb-color-2 .5s, --gb-color-3 .5s, --gb-color-4 .5s, --gb-color-5 .5s,
+      --border-angle .5s, --border-color-1 .5s, --border-color-2 .5s,
+      --stop-1 .5s, --stop-2 .5s, --stop-3 .5s, --stop-4 .5s, --stop-5 .5s;
   }
-  .btn:hover{opacity:0.88;}
+  .btn::before{
+    content:''; position:absolute; inset:0; border-radius:inherit; padding:1px;
+    background:linear-gradient(var(--border-angle), var(--border-color-1), var(--border-color-2));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    pointer-events:none;
+  }
+  .btn:hover{
+    --pos-x:0%; --pos-y:91.51%; --spread-x:120.24%; --spread-y:103.18%;
+    --gb-color-1:#c98462; --gb-color-2:#c68564; --gb-color-3:#cc5b23; --gb-color-4:#37190a; --gb-color-5:#000000;
+    --border-angle:190deg; --border-color-1:hsla(20,78%,90%,0.1); --border-color-2:hsla(20,75%,90%,0.6);
+    --stop-1:0%; --stop-2:8.8%; --stop-3:21.44%; --stop-4:71.34%; --stop-5:85.76%;
+  }
+
+  .btn-variant{
+    --gb-color-1:#00221f; --gb-color-2:#1f6d65; --gb-color-3:#46968e; --gb-color-4:#a5fff6;
+    --border-angle:200deg; --border-color-1:hsla(174,75%,90%,0.6); --border-color-2:hsla(174,50%,90%,0.15);
+  }
+  .btn-variant:hover{
+    --pos-x:0%; --pos-y:95.51%; --spread-x:110.24%; --spread-y:110.2%;
+    --gb-color-1:#00201d; --gb-color-2:#a5fff6; --gb-color-3:#46968e; --gb-color-4:#1f6d65; --gb-color-5:#000000;
+    --stop-1:0%; --stop-2:10%; --stop-3:35.44%; --stop-4:71.34%; --stop-5:90.76%;
+    --border-angle:210deg; --border-color-1:hsla(174,75%,90%,0.2); --border-color-2:hsla(174,50%,90%,0.75);
+  }
   .footer-note{
     margin-top:36px; font-size:12px; color:var(--text-faint);
     font-family:var(--font-display); font-weight:500; letter-spacing:0.02em;
