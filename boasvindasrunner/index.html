@@ -131,15 +131,26 @@
   .block li::before{content:'+'; position:absolute; left:0; top:13px; color:var(--teal); font-weight:600;}
 
   /* PLANOS */
+  .plan-hint{font-size:13px; color:var(--text-faint); margin-top:18px; margin-bottom:-6px; font-style:italic;}
   .plan-grid{display:flex; flex-direction:column; gap:14px; margin-top:26px;}
   .plan{
-    border-radius:14px; padding:24px 22px;
+    border-radius:14px; padding:24px 22px; cursor:pointer;
     display:grid; grid-template-columns:150px 1fr; gap:22px; align-items:start;
-    transition:border-color .4s var(--ease);
+    transition:border-color .4s var(--ease), background .4s var(--ease);
   }
   .plan:hover{border-color:rgba(240,106,41,0.6);}
+  .plan:focus-visible{outline:2px solid var(--orange); outline-offset:2px;}
+  .plan.selected{
+    border-color:var(--orange);
+    background:linear-gradient(180deg, rgba(240,106,41,0.12), var(--glass) 55%);
+  }
   .plan-name{font-family:var(--font-display); font-weight:700; font-size:17px; margin-bottom:2px;}
   .plan-cycle{font-size:11.5px; color:var(--text-faint); letter-spacing:0.04em; text-transform:uppercase;}
+  .mine-badge{
+    display:none; align-items:center; gap:4px; font-family:var(--font-body); font-weight:600;
+    font-size:10.5px; color:var(--orange); margin-top:6px; letter-spacing:0.02em;
+  }
+  .plan.selected .mine-badge{display:inline-flex;}
   .plan ul{list-style:none; margin:0;}
   .plan li{
     font-size:14.5px; color:var(--text-muted); line-height:1.55;
@@ -148,6 +159,12 @@
   .plan li:first-child{border-top:none; padding-top:0;}
   .plan li::before{content:'+'; position:absolute; left:0; top:10px; color:var(--teal); font-weight:600;}
   .plan li:first-child::before{top:0;}
+  .plan li.new-vs-mine::before{color:var(--orange);}
+  .plan li .new-tag{
+    display:inline-block; margin-left:8px; font-size:10px; font-weight:600; color:var(--orange);
+    background:rgba(240,106,41,0.14); padding:2px 7px; border-radius:999px;
+    text-transform:uppercase; letter-spacing:0.03em; vertical-align:middle;
+  }
   .plan-note{font-size:12.5px; color:var(--text-faint); margin-top:22px;}
 
   /* TEAM */
@@ -284,10 +301,11 @@
     <span class="kicker">conforme o seu plano</span>
     <h2>O que muda entre Basic, Advanced e Pro</h2>
     <p>A base acima é igual pra todo mundo. O que muda é a frequência de atualização e os itens extras:</p>
-    <div class="plan-grid">
-      <div class="plan glass">
+    <p class="plan-hint">Clique no plano que você contratou pra ver o que ele já inclui e o que mudaria nos outros.</p>
+    <div class="plan-grid" id="planGrid">
+      <div class="plan glass" data-tier="1" role="button" tabindex="0">
         <div class="plan-head">
-          <div class="plan-name">Basic</div>
+          <div class="plan-name">Basic<span class="mine-badge">✓ seu plano</span></div>
           <div class="plan-cycle">3 meses</div>
         </div>
         <ul>
@@ -295,23 +313,20 @@
           <li>1 Call de Entrega de Resultados, no 3º mês</li>
         </ul>
       </div>
-      <div class="plan glass">
+      <div class="plan glass" data-tier="2" role="button" tabindex="0">
         <div class="plan-head">
-          <div class="plan-name">Advanced</div>
+          <div class="plan-name">Advanced<span class="mine-badge">✓ seu plano</span></div>
           <div class="plan-cycle">6 meses</div>
         </div>
         <ul>
           <li>Treino atualizado 6x no ciclo</li>
           <li>2 Calls de Entrega de Resultados, no 3º e no 6º mês</li>
           <li>Avaliação postural com PDF</li>
-          <li>Sessão com a psicóloga do time</li>
-          <li>Recuperação corporal com desconto</li>
-          <li>Suporte iFood — até 5 restaurantes</li>
         </ul>
       </div>
-      <div class="plan glass">
+      <div class="plan glass" data-tier="3" role="button" tabindex="0">
         <div class="plan-head">
-          <div class="plan-name">Pro</div>
+          <div class="plan-name">Pro<span class="mine-badge">✓ seu plano</span></div>
           <div class="plan-cycle">12 meses</div>
         </div>
         <ul>
@@ -484,6 +499,63 @@
   }, { threshold: 0.14, rootMargin: '-6% 0px -12% 0px' });
 
   document.querySelectorAll('.reveal, .side-left, .side-right').forEach(function(el){ observer.observe(el); });
+</script>
+
+<script>
+(function(){
+  var KEY = 'nexxo_bv_runner_myplan';
+  var plans = document.querySelectorAll('#planGrid .plan');
+  if (!plans.length) return;
+
+  function itemTexts(plan){
+    return Array.from(plan.querySelectorAll('li')).map(function(li){
+      return (li.childNodes[0] ? li.childNodes[0].textContent : li.textContent).trim();
+    });
+  }
+
+  function applySelection(tier){
+    var selected = null;
+    plans.forEach(function(p){
+      var mine = p.dataset.tier === tier;
+      p.classList.toggle('selected', mine);
+      if (mine) selected = p;
+    });
+    var mineItems = selected ? itemTexts(selected) : [];
+    var mineTier = selected ? parseInt(selected.dataset.tier, 10) : 0;
+    plans.forEach(function(p){
+      var isMine = p === selected;
+      var isHigher = parseInt(p.dataset.tier, 10) > mineTier;
+      p.querySelectorAll('li').forEach(function(li){
+        var tag = li.querySelector('.new-tag');
+        if (tag) tag.remove();
+        li.classList.remove('new-vs-mine');
+        var text = (li.childNodes[0] ? li.childNodes[0].textContent : li.textContent).trim();
+        if (!isMine && isHigher && selected && mineItems.indexOf(text) === -1) {
+          li.classList.add('new-vs-mine');
+          var span = document.createElement('span');
+          span.className = 'new-tag';
+          span.textContent = 'novo';
+          li.appendChild(span);
+        }
+      });
+    });
+  }
+
+  plans.forEach(function(p){
+    p.addEventListener('click', function(){
+      var tier = p.dataset.tier;
+      try { localStorage.setItem(KEY, tier); } catch(e){}
+      applySelection(tier);
+    });
+    p.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.click(); }
+    });
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch(e){}
+  if (saved) applySelection(saved);
+})();
 </script>
 
 <script>
