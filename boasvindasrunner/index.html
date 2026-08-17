@@ -227,6 +227,7 @@
     .plan{grid-template-columns:1fr; gap:16px; padding:22px 20px;}
   }
 </style>
+<link rel="stylesheet" href="/assets/nexxo-team.css">
 </head>
 <body class="locked">
 
@@ -330,20 +331,7 @@
     <span class="kicker">quem cuida de você</span>
     <h2>Um time, não uma pessoa só</h2>
     <p>Na Nexxo, você não é acompanhado por um profissional isolado — é um time trabalhando junto pelo seu resultado.</p>
-    <div class="team">
-      <div class="team-role glass">
-        <div class="role-name">Nutricionista</div>
-        <div class="role-desc">plano alimentar e condutas</div>
-      </div>
-      <div class="team-role glass">
-        <div class="role-name">Personal Trainer</div>
-        <div class="role-desc">planilha de corrida e força</div>
-      </div>
-      <div class="team-role glass">
-        <div class="role-name">Time de suporte</div>
-        <div class="role-desc">dúvidas e acompanhamento no grupo</div>
-      </div>
-    </div>
+    <div data-nexxo-team></div>
   </div>
 
   <div class="warn glass glow side-left">
@@ -526,5 +514,6 @@
   input.addEventListener('keydown', function(e){ if(e.key==='Enter') tryUnlock(); });
 })();
 </script>
+<script src="/assets/nexxo-team.js"></script>
 </body>
 </html>

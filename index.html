@@ -47,8 +47,24 @@
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
     background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;
+  }
+  .hero-screen{
     min-height:100vh; display:flex; flex-direction:column; justify-content:center;
   }
+
+  /* seção de equipe */
+  .team-section{max-width:920px; margin:0 auto; padding:0 24px 96px;}
+  .team-section .kicker{
+    display:inline-block; font-size:11px; font-weight:600; color:var(--teal); background:var(--teal-dim);
+    padding:5px 14px; border-radius:999px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:16px;
+  }
+  .team-section h2{
+    font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em;
+    font-size:clamp(24px,4vw,34px); line-height:1.2; margin-bottom:12px;
+  }
+  .team-section > p{max-width:560px; margin-bottom:0;}
+  .team-divider{height:1px; background:rgba(255,255,255,0.09); margin:0 24px 64px; max-width:920px;}
+  @media (min-width:968px){ .team-divider{margin-left:auto; margin-right:auto;} }
 
   .video-wrap{position:relative; width:100%; line-height:0;}
   .video-wrap video{display:block; width:100%; height:auto;}
@@ -120,17 +136,30 @@
     font-family:var(--font-display); font-weight:500; letter-spacing:0.02em;
   }
 </style>
+<link rel="stylesheet" href="/assets/nexxo-team.css">
 </head>
 <body>
-<div class="video-wrap">
-  <video src="/assets/logo-animation.mp4" poster="/assets/logo.png" autoplay muted playsinline></video>
+<div class="hero-screen">
+  <div class="video-wrap">
+    <video src="/assets/logo-animation.mp4" poster="/assets/logo.png" autoplay muted playsinline></video>
+  </div>
+  <div class="card">
+    <div class="status">site em construção</div>
+    <h1>O ponto onde <em>tudo se conecta</em>.</h1>
+    <p>Nutrição e treino desenhados juntos, como um sistema só. A página completa está a caminho — mas os planos já estão disponíveis.</p>
+    <a href="/programas/" class="btn">Ver programas</a>
+  </div>
 </div>
-<div class="card">
-  <div class="status">site em construção</div>
-  <h1>O ponto onde <em>tudo se conecta</em>.</h1>
-  <p>Nutrição e treino desenhados juntos, como um sistema só. A página completa está a caminho — mas os planos já estão disponíveis.</p>
-  <a href="/programas/" class="btn">Ver programas</a>
+
+<div class="team-divider"></div>
+
+<section class="team-section">
+  <span class="kicker">quem cuida de você</span>
+  <h2>Um time, não uma pessoa só</h2>
+  <p>Nutrição, treino e comportamento decididos pela mesma equipe, olhando o mesmo calendário.</p>
+  <div data-nexxo-team></div>
   <p class="footer-note">nexxo · @consultoria.nexxo</p>
-</div>
+</section>
+<script src="/assets/nexxo-team.js"></script>
 </body>
 </html>
