@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexxo | Programas</title>
+<link rel="icon" href="/assets/favicon.png">
+<meta name="description" content="Conheça os programas Nexxo: Slim (emagrecimento), Runner (corrida), Femme (mulheres 35+) e Hyper (hipertrofia).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexxo.fit/programas/">
+<meta property="og:title" content="Nexxo | Programas">
+<meta property="og:description" content="Conheça os programas Nexxo: Slim (emagrecimento), Runner (corrida), Femme (mulheres 35+) e Hyper (hipertrofia).">
+<meta property="og:image" content="https://nexxo.fit/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nexxo | Programas">
+<meta name="twitter:description" content="Conheça os programas Nexxo: Slim (emagrecimento), Runner (corrida), Femme (mulheres 35+) e Hyper (hipertrofia).">
+<meta name="twitter:image" content="https://nexxo.fit/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141B1F; --bg-elevated:#1B242A; --bg-card:#1C262C;
+    --line:rgba(255,255,255,0.09); --line-strong:rgba(255,255,255,0.16);
+    --orange:#F06A29; --orange-dim:rgba(240,106,41,0.12);
+    --teal:#1BA892; --teal-dim:rgba(27,168,146,0.14);
+    --text:#FFFFFF; --text-muted:rgba(255,255,255,0.72); --text-faint:rgba(255,255,255,0.48);
+    --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif;
+    --radius:18px; --max:1080px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:64px 24px 90px;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em;}
+
+  .hero{text-align:center; margin-bottom:56px;}
+  .logo{font-family:var(--font-display); font-weight:800; font-size:22px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:26px;}
+  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--orange);}
+  .hero h1{font-size:clamp(28px,5vw,42px); line-height:1.15; margin-bottom:16px;}
+  .hero h1 em{font-style:normal; color:var(--orange);}
+  .hero p{color:var(--text-muted); font-size:16px; max-width:560px; margin:0 auto;}
+
+  .programs{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
+  @media (max-width:980px){ .programs{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .programs{grid-template-columns:1fr;} }
+
+  .program{
+    border:1px solid var(--line-strong); border-radius:var(--radius); padding:28px 22px;
+    background:var(--bg-card); display:flex; flex-direction:column; text-decoration:none; color:var(--text);
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .program:hover{transform:translateY(-4px); border-color:var(--orange);}
+  .program-icon{
+    width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px; font-size:18px; font-weight:700; font-family:var(--font-display);
+  }
+  .program-name{font-size:19px; font-weight:700; margin-bottom:6px;}
+  .program-tag{
+    font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--teal);
+    background:var(--teal-dim); display:inline-block; padding:4px 10px; border-radius:999px; margin-bottom:14px; align-self:flex-start;
+  }
+  .program-desc{font-size:13.5px; color:var(--text-muted); flex-grow:1; margin-bottom:18px;}
+  .program-cta{
+    font-size:13.5px; font-weight:600; color:var(--orange); display:inline-flex; align-items:center; gap:6px;
+  }
+
+  .slim .program-icon{background:var(--orange-dim); color:var(--orange);}
+  .runner .program-icon{background:var(--teal-dim); color:var(--teal);}
+  .femme .program-icon{background:var(--orange-dim); color:var(--orange);}
+  .hyper .program-icon{background:var(--teal-dim); color:var(--teal);}
+
+  .footer-note{text-align:center; margin-top:56px; font-size:12px; color:var(--text-faint); font-family:var(--font-display); font-weight:500; letter-spacing:0.02em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="logo"><span class="dot"></span>nexxo</div>
+    <h1>Qual é o seu <em>objetivo</em>?</h1>
+    <p>Cada programa Nexxo é desenhado pra um objetivo específico — escolha o seu pra ver como a nutrição e o treino se conectam pra chegar lá.</p>
+  </div>
+
+  <div class="programs">
+
+    <a href="/slim/" class="program slim">
+      <div class="program-icon">S</div>
+      <div class="program-name">Nexxo Slim</div>
+      <div class="program-tag">Emagrecimento</div>
+      <p class="program-desc">Pra quem quer emagrecer de verdade, sem o efeito sanfona: dieta, treino, suplementação e análise de exames focados em resultado.</p>
+      <span class="program-cta">Ver planos →</span>
+    </a>
+
+    <a href="/runner/" class="program runner">
+      <div class="program-icon">R</div>
+      <div class="program-name">Nexxo Runner</div>
+      <div class="program-tag">Corrida · iniciante e intermediário</div>
+      <p class="program-desc">Pra quem está começando a correr ou quer evoluir sua performance, com treino e nutrição que aguentam o ritmo.</p>
+      <span class="program-cta">Ver planos →</span>
+    </a>
+
+    <a href="/femme/" class="program femme">
+      <div class="program-icon">F</div>
+      <div class="program-name">Nexxo Femme</div>
+      <div class="program-tag">Mulheres 35+</div>
+      <p class="program-desc">Pra mulheres que querem cuidar da longevidade, da pele e da transição pra menopausa com nutrição e treino de verdade.</p>
+      <span class="program-cta">Ver planos →</span>
+    </a>
+
+    <a href="/hyper/" class="program hyper">
+      <div class="program-icon">H</div>
+      <div class="program-name">Nexxo Hyper</div>
+      <div class="program-tag">Hipertrofia</div>
+      <p class="program-desc">Pra quem busca ganho de massa muscular de verdade — homens e mulheres — com estratégia, não achismo.</p>
+      <span class="program-cta">Ver planos →</span>
+    </a>
+
+  </div>
+
+  <p class="footer-note">nexxo · @consultoria.nexxo</p>
+
+</div>
+</body>
+</html>
