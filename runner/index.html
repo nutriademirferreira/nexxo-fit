@@ -119,8 +119,8 @@
   .price-reveal-row.hidden{display:none;}
 
   /* PLANS */
-  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:52px;}
-  @media (max-width:820px){ .plans{grid-template-columns:1fr;} }
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:12vh; margin-bottom:52px;}
+  @media (max-width:820px){ .plans{grid-template-columns:1fr; margin-top:8vh;} }
   .plan{
     border-radius:var(--radius); padding:28px 24px;
     display:flex; flex-direction:column; position:relative;
@@ -279,11 +279,6 @@
     </div>
   </div>
 
-  <div class="price-reveal-row" id="priceRevealRow">
-    <p>Você já viu tudo o que está incluso. Agora, os valores:</p>
-    <button class="btn" id="revealPricesBtn">Ver valores dos planos</button>
-  </div>
-
   <div class="plans" id="plans">
 
     <div class="plan glass">
@@ -347,6 +342,11 @@
 
   </div>
 
+  <div class="price-reveal-row" id="priceRevealRow">
+    <p>Você já viu tudo o que está incluso. Agora, os valores:</p>
+    <button class="btn" id="revealPricesBtn">Ver valores dos planos</button>
+  </div>
+
   <div class="addon glass">
     <div class="addon-head">
       <h3>+ Acompanhamento Médico</h3>
@@ -378,8 +378,15 @@
   var images = new Array(TOTAL_FRAMES);
   var loadedCount = 0;
   var currentFrame = -1;
+  var playhead = 0;
+  var lastScrollY = window.scrollY;
 
   function pad(n){ return String(n).padStart(4, '0'); }
+
+  function activeIndex(){
+    var i = Math.floor(playhead) % TOTAL_FRAMES;
+    return i < 0 ? i + TOTAL_FRAMES : i;
+  }
 
   function resizeCanvas(){
     var dpr = window.devicePixelRatio || 1;
@@ -387,7 +394,7 @@
     canvas.height = window.innerHeight * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     currentFrame = -1;
-    onScroll();
+    drawFrame(activeIndex());
   }
 
   function drawFrame(index){
@@ -407,17 +414,19 @@
 
   function onScroll(){
     var scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    var progress = scrollable > 0 ? window.scrollY / scrollable : 0;
-    progress = Math.max(0, Math.min(1, progress));
-    drawFrame(Math.round(progress * (TOTAL_FRAMES - 1)));
+    var framesPerPixel = scrollable > 0 ? TOTAL_FRAMES / scrollable : 0;
+    var delta = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    playhead += Math.abs(delta) * framesPerPixel;
+    drawFrame(activeIndex());
   }
 
   for (var i = 0; i < TOTAL_FRAMES; i++) {
     var img = new Image();
     img.onload = function(){
       loadedCount++;
-      if (loadedCount === 1) onScroll();
-      if (loadedCount === TOTAL_FRAMES) onScroll();
+      if (loadedCount === 1) drawFrame(activeIndex());
+      if (loadedCount === TOTAL_FRAMES) drawFrame(activeIndex());
     };
     img.src = '/assets/runner-frames/frame-' + pad(i + 1) + '.jpg';
     images[i] = img;
