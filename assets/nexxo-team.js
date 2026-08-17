@@ -15,31 +15,31 @@
       name: 'Ademir Ferreira',
       role: 'Nutricionista',
       desc: 'plano alimentar, condutas e ajuste de protocolo',
-      image: null
+      image: '/assets/time/ademir.jpg'
     },
     {
       name: 'Murilo Massimetti',
       role: 'Personal Trainer',
       desc: 'plano de treino, progressão de carga e execução',
-      image: null
+      image: '/assets/time/murilo.jpg'
     },
     {
-      name: null, // <- nome da psicóloga
+      name: 'Ana Mondini',
       role: 'Psicóloga',
-      desc: 'comportamento alimentar e o que trava fora do prato',
-      image: null
+      desc: 'especialista em transtorno alimentar',
+      image: null // <- falta a foto: mandar o arquivo
     },
     {
-      name: null, // <- nome do médico
+      name: 'Dr. Daniel',
       role: 'Médico',
-      desc: 'exames, medicação e conduta clínica',
-      image: null
+      desc: 'cardiologista do esporte',
+      image: '/assets/time/daniel.jpg'
     },
     {
       name: 'Karina Gonçalves',
       role: 'Líder do Time de Suporte',
       desc: 'especialista em nutrição esportiva e saúde da mulher',
-      image: null
+      image: '/assets/time/karina.jpg'
     }
   ];
 
