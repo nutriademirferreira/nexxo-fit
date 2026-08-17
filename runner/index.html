@@ -69,28 +69,36 @@
   .reveal.in-view{opacity:1; transform:translateY(0);}
   @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
 
-  /* JORNADA — pontos de entrega, dor -> solução */
-  .journey{position:relative; border-radius:var(--radius); margin-bottom:24px; padding:36px 30px;}
-  .journey-head{text-align:center; margin-bottom:32px;}
+  /* JORNADA — pontos de entrega, dor -> solução, revelados par a par no scroll */
+  .journey{text-align:center; padding:6vh 24px 2vh; margin-bottom:0;}
   .journey-head .kicker{
     display:inline-block; font-size:11px; font-weight:600; color:var(--teal); background:var(--teal-dim);
     padding:5px 14px; border-radius:999px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px;
   }
-  .journey-head h2{font-size:clamp(22px,3.5vw,28px);}
-  .journey-list{display:flex; flex-direction:column; gap:22px;}
-  .journey-item{
-    display:grid; grid-template-columns:32px 1fr; gap:16px;
-    padding-bottom:22px; border-bottom:1px solid var(--line);
+  .journey-head h2{font-size:clamp(22px,3.5vw,28px); max-width:520px; margin:0 auto;}
+
+  .journey-steps{position:relative;}
+  .step{position:relative; height:130vh;}
+  .step-q, .step-a{
+    position:absolute; max-width:440px; padding:0 28px; font-size:15px; line-height:1.55;
+    text-shadow:0 2px 16px rgba(0,0,0,0.55);
   }
-  .journey-item:last-child{border-bottom:none; padding-bottom:0;}
-  .journey-num{
-    font-family:var(--font-display); font-weight:700; font-size:13px; color:var(--orange);
-    width:32px; height:32px; border-radius:50%; border:1px solid rgba(240,106,41,0.4);
-    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  .step-q{top:10vh; left:0; font-style:italic; color:var(--text-faint); font-size:16px;}
+  .step-a{top:54vh; right:0; text-align:right; color:var(--text);}
+  .step-a b{color:var(--text); font-weight:600;}
+  .step:last-child{height:78vh;}
+  .reveal-left{opacity:0; transform:translateX(-36px); transition:opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);}
+  .reveal-left.in-view{opacity:1; transform:translateX(0);}
+  .reveal-right{opacity:0; transform:translateX(36px); transition:opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);}
+  .reveal-right.in-view{opacity:1; transform:translateX(0);}
+  @media (prefers-reduced-motion:reduce){ .reveal-left,.reveal-right{opacity:1; transform:none; transition:none;} }
+  @media (max-width:820px){
+    .step{height:105vh;}
+    .step-q,.step-a{max-width:82%; padding:0 20px;}
+    .step-q{top:8vh;}
+    .step-a{top:46vh;}
+    .step:last-child{height:66vh;}
   }
-  .journey-pain{font-size:13.5px; color:var(--text-faint); font-style:italic; margin-bottom:6px;}
-  .journey-solution{font-size:15px; color:var(--text); line-height:1.5;}
-  .journey-solution b{color:var(--text); font-weight:600;}
 
   /* PRICE REVEAL */
   .price-teaser{
@@ -231,54 +239,37 @@
     </div>
   </div>
 
-  <div class="journey glass reveal">
+  <div class="journey reveal">
     <div class="journey-head">
       <span class="kicker">sua entrega Runner</span>
       <h2>O que resolve o seu problema, passo a passo</h2>
     </div>
-    <div class="journey-list">
-      <div class="journey-item">
-        <div class="journey-num">01</div>
-        <div>
-          <div class="journey-pain">"Não sei nem por onde começar, tenho medo de me machucar."</div>
-          <div class="journey-solution"><b>Preparação inicial</b> — testes de velocidade e resistência pra saber exatamente onde você está antes de montar seu treino.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-num">02</div>
-        <div>
-          <div class="journey-pain">"Quero ver progresso de verdade, não só sensação."</div>
-          <div class="journey-solution"><b>Teste de 5km a cada ciclo</b> — sua evolução medida com número, não com achismo.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-num">03</div>
-        <div>
-          <div class="journey-pain">"Corredor iniciante se lesiona demais."</div>
-          <div class="journey-solution"><b>Treino de fortalecimento específico pra corrida</b> — pra você não parar por lesão no meio do caminho.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-num">04</div>
-        <div>
-          <div class="journey-pain">"Não sei o que comer antes ou depois de treinar."</div>
-          <div class="journey-solution"><b>Ajuste de nutrient timing</b> — o combustível certo, na hora certa, pra render mais em cada treino.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-num">05</div>
-        <div>
-          <div class="journey-pain">"Suplemento genérico não é pensado pra quem corre."</div>
-          <div class="journey-solution"><b>Suplementação específica pra corrida</b> — direcionada pro seu volume e objetivo, não uma lista padrão.</div>
-        </div>
-      </div>
-      <div class="journey-item">
-        <div class="journey-num">06</div>
-        <div>
-          <div class="journey-pain">"Treinar sem olhar exame é treinar no escuro."</div>
-          <div class="journey-solution"><b>Monitoramento de exames de sangue</b> — acompanhamento contínuo, não só um check-up isolado.</div>
-        </div>
-      </div>
+  </div>
+
+  <div class="journey-steps">
+    <div class="step">
+      <div class="step-q reveal-left">"Não sei nem por onde começar, tenho medo de me machucar."</div>
+      <div class="step-a reveal-right"><b>Preparação inicial</b> — testes de velocidade e resistência pra saber exatamente onde você está antes de montar seu treino.</div>
+    </div>
+    <div class="step">
+      <div class="step-q reveal-left">"Quero ver progresso de verdade, não só sensação."</div>
+      <div class="step-a reveal-right"><b>Teste de 5km a cada ciclo</b> — sua evolução medida com número, não com achismo.</div>
+    </div>
+    <div class="step">
+      <div class="step-q reveal-left">"Corredor iniciante se lesiona demais."</div>
+      <div class="step-a reveal-right"><b>Treino de fortalecimento específico pra corrida</b> — pra você não parar por lesão no meio do caminho.</div>
+    </div>
+    <div class="step">
+      <div class="step-q reveal-left">"Não sei o que comer antes ou depois de treinar."</div>
+      <div class="step-a reveal-right"><b>Ajuste de nutrient timing</b> — o combustível certo, na hora certa, pra render mais em cada treino.</div>
+    </div>
+    <div class="step">
+      <div class="step-q reveal-left">"Suplemento genérico não é pensado pra quem corre."</div>
+      <div class="step-a reveal-right"><b>Suplementação específica pra corrida</b> — direcionada pro seu volume e objetivo, não uma lista padrão.</div>
+    </div>
+    <div class="step">
+      <div class="step-q reveal-left">"Treinar sem olhar exame é treinar no escuro."</div>
+      <div class="step-a reveal-right"><b>Monitoramento de exames de sangue</b> — acompanhamento contínuo, não só um check-up isolado.</div>
     </div>
   </div>
 
@@ -448,6 +439,13 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+
+  var stepObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      entry.target.classList.toggle('in-view', entry.isIntersecting);
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.reveal-left, .reveal-right').forEach(function(el){ stepObserver.observe(el); });
 
   document.querySelectorAll('.item-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
