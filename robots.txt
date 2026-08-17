@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /x1icprfa/
+Disallow: /hfvi2jwf/
+Disallow: /y12izc14/
+Allow: /

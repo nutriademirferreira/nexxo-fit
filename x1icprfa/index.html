@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexxo | Boas-vindas</title>
+<link rel="icon" href="/assets/favicon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
+<link rel="canonical" href="https://nexxo.fit/x1icprfa/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141B1F; --bg-elevated:#1B242A; --bg-card:#1C262C;
+    --line:rgba(255,255,255,0.09); --line-strong:rgba(255,255,255,0.16);
+    --orange:#F06A29; --orange-dim:rgba(240,106,41,0.12);
+    --teal:#1BA892; --teal-dim:rgba(27,168,146,0.14);
+    --text:#FFFFFF; --text-muted:rgba(255,255,255,0.72); --text-faint:rgba(255,255,255,0.48);
+    --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif;
+    --radius:20px; --max:760px;
+    --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:88px 24px 120px;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.02em;}
+
+  /* GATE */
+  body.locked{overflow:hidden;}
+  body.locked .site-content{display:none;}
+  .gate{position:fixed; inset:0; z-index:100; background:var(--bg); display:flex; align-items:center; justify-content:center; padding:24px;}
+  .gate-card{max-width:340px; width:100%; text-align:center;}
+  .gate-icon{width:52px; height:52px; margin:0 auto 22px; border-radius:50%; background:var(--teal-dim); display:flex; align-items:center; justify-content:center;}
+  .gate-icon svg{width:22px; height:22px; color:var(--teal);}
+  .gate-card h2{font-size:19px; margin-bottom:8px;}
+  .gate-card p{font-size:13.5px; color:var(--text-muted); margin-bottom:26px;}
+  .gate-input{width:100%; padding:15px 16px; border-radius:12px; border:1px solid var(--line-strong); background:var(--bg-card); color:var(--text); font-size:22px; text-align:center; letter-spacing:8px; margin-bottom:14px; font-family:var(--font-display); font-weight:600;}
+  .gate-input:focus{outline:none; border-color:var(--orange);}
+  .gate-btn{width:100%; padding:15px; border-radius:999px; background:var(--orange); color:#fff; border:none; font-weight:600; font-size:15px; cursor:pointer; font-family:var(--font-body);}
+  .gate-btn:hover{opacity:.9;}
+  .gate-error{color:var(--orange); font-size:12.5px; margin-top:14px; opacity:0; transition:opacity .2s;}
+  .gate-error.show{opacity:1;}
+  .gate-card.shake{animation:shake .4s;}
+  @keyframes shake{ 20%,60%{transform:translateX(-8px);} 40%,80%{transform:translateX(8px);} }
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0; transform:translateY(36px); transition:opacity 1s var(--ease), transform 1s var(--ease);}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .social-btn::before{animation:none !important;}
+  }
+
+  /* HERO */
+  .hero{text-align:center; margin-bottom:120px;}
+  .logo{font-family:var(--font-display); font-weight:800; font-size:22px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:36px;}
+  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--orange);}
+  .status{
+    font-family:var(--font-body); font-weight:600; font-size:11px; color:var(--teal);
+    background:var(--teal-dim); display:inline-block; padding:7px 16px; border-radius:999px;
+    text-transform:uppercase; letter-spacing:0.08em; margin-bottom:32px;
+  }
+  .hero h1{font-size:clamp(36px,7vw,64px); line-height:1.08; margin-bottom:26px;}
+  .hero h1 em{font-style:normal; color:var(--orange);}
+  .hero p{color:var(--text-muted); font-size:18px; max-width:520px; margin:0 auto; line-height:1.7;}
+
+  /* SECTION CARD */
+  .card{
+    border:1px solid var(--line-strong); border-radius:var(--radius); padding:44px 40px;
+    background:var(--bg-card); margin-bottom:64px;
+    transition:transform .5s var(--ease), border-color .5s var(--ease);
+  }
+  .card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,0.24);}
+  .card h2{font-size:clamp(24px,3.2vw,32px); margin-bottom:14px; line-height:1.2;}
+  .card .kicker{font-size:12px; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px; display:block;}
+  .card p{color:var(--text-muted); font-size:15.5px; margin-bottom:14px;}
+  .card p:last-child{margin-bottom:0;}
+  .card ul{list-style:none; margin-top:22px;}
+  .card li{
+    font-size:15px; color:var(--text-muted); padding:14px 0 14px 26px; position:relative;
+    border-top:1px solid var(--line);
+  }
+  .card li:first-child{border-top:none;}
+  .card li::before{content:'+'; position:absolute; left:0; top:14px; color:var(--teal); font-weight:600;}
+
+  /* TEAM */
+  .team{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:16px;}
+  @media (max-width:600px){ .team{grid-template-columns:1fr;} }
+  .team-role{
+    background:var(--bg-elevated); border:1px solid var(--line-strong); border-radius:14px;
+    padding:24px 18px; text-align:center;
+    transition:transform .4s var(--ease), border-color .4s var(--ease);
+  }
+  .team-role:hover{transform:translateY(-3px); border-color:var(--orange);}
+  .team-role .role-name{font-family:var(--font-display); font-weight:600; font-size:15px; margin-bottom:6px;}
+  .team-role .role-desc{font-size:13px; color:var(--text-faint);}
+
+  /* WARNING */
+  .warn{
+    border:1px dashed var(--orange); border-radius:var(--radius); padding:32px 34px;
+    background:var(--orange-dim); margin-bottom:64px;
+  }
+  .warn .kicker{color:var(--orange);}
+  .warn p{color:var(--text); font-size:15.5px;}
+
+  /* CTA */
+  .cta{
+    text-align:center; border:1px solid var(--line-strong); border-radius:var(--radius);
+    padding:56px 40px; background:var(--bg-card); margin-bottom:64px;
+  }
+  .cta h2{font-size:clamp(24px,3.2vw,32px); margin-bottom:12px;}
+  .cta p{color:var(--text-muted); font-size:15.5px; margin-bottom:32px;}
+  .cta-note{font-size:11.5px; color:var(--text-faint); margin-top:18px;}
+  .cta-note b{color:var(--orange); font-weight:600;}
+  .steps-row{display:flex; flex-direction:column; gap:22px; align-items:center;}
+  .step{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .step-label{font-size:12px; color:var(--text-faint); font-weight:600;}
+  .step-label b{color:var(--teal);}
+  .btn{
+    position:relative; display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:#fff;
+    font-family:var(--font-body); font-weight:600; font-size:14.5px; padding:15px 24px;
+    border-radius:999px; text-decoration:none; white-space:nowrap;
+    transition:transform .3s var(--ease), opacity .3s var(--ease);
+  }
+  .btn.outline{background:transparent; border:1px solid var(--line-strong); color:var(--text);}
+  .btn:hover{transform:translateY(-2px); opacity:0.92;}
+  .btn.pulse::before{
+    content:''; position:absolute; inset:0; border-radius:999px;
+    border:1.5px solid var(--orange); opacity:0; pointer-events:none;
+    animation:pulse-ring 2.6s var(--ease) infinite;
+  }
+
+  /* SOCIAL BUTTONS */
+  .social-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px;}
+  .social-btn{
+    position:relative; display:inline-flex; align-items:center; gap:10px;
+    padding:14px 26px; border-radius:999px;
+    background:var(--bg-elevated); border:1px solid var(--line-strong);
+    color:var(--text); text-decoration:none; font-weight:600; font-size:14.5px;
+    transition:transform .35s var(--ease), border-color .35s var(--ease);
+  }
+  .social-btn:hover{transform:translateY(-3px);}
+  .social-btn svg{width:20px; height:20px; flex-shrink:0;}
+  .social-btn.instagram{color:var(--text);}
+  .social-btn.instagram svg{color:var(--orange);}
+  .social-btn.instagram:hover{border-color:var(--orange);}
+  .social-btn.whatsapp svg{color:var(--teal);}
+  .social-btn.whatsapp:hover{border-color:var(--teal);}
+  @keyframes pulse-ring{
+    0%{transform:scale(1); opacity:0.55;}
+    75%{transform:scale(1.14); opacity:0;}
+    100%{opacity:0;}
+  }
+
+  .footer-note{text-align:center; margin-top:40px; font-size:12px; color:var(--text-faint); font-family:var(--font-display); font-weight:500; letter-spacing:0.03em;}
+</style>
+</head>
+<body class="locked">
+
+<div class="gate" id="gate">
+  <div class="gate-card" id="gate-card">
+    <div class="gate-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+    <h2>Acesso restrito</h2>
+    <p>Digite o código que você recebeu pra ver seu documento de boas-vindas.</p>
+    <input type="text" inputmode="numeric" class="gate-input" id="gate-input" maxlength="4" placeholder="••••" autocomplete="off">
+    <button class="gate-btn" id="gate-btn">Entrar</button>
+    <p class="gate-error" id="gate-error">Código incorreto, tenta de novo.</p>
+  </div>
+</div>
+
+<div class="wrap site-content">
+
+  <div class="hero reveal">
+    <div class="logo"><span class="dot"></span>nexxo</div>
+    <div class="status">bem-vindo(a) · plano Basic</div>
+    <h1>Agora você faz parte<br>do <em>sistema Nexxo</em>.</h1>
+    <p>Nutrição e treino conectados, com um time de verdade acompanhando cada etapa. Leia esse documento com atenção — ele explica como tudo funciona a partir de agora.</p>
+  </div>
+
+  <div class="card reveal">
+    <span class="kicker">seu acompanhamento Basic inclui</span>
+    <h2>Veja o que está incluso</h2>
+    <p>Seu plano Nexxo Basic (ciclo trimestral) conta com:</p>
+    <ul>
+      <li>Questionário inicial integrado, pra entender rotina, objetivo e limitações</li>
+      <li>Consulta/call inicial para elaboração do seu plano alimentar e de treino</li>
+      <li>Avaliação física inicial, com reavaliações periódicas ao longo do ciclo</li>
+      <li>Plano alimentar + treino personalizados, entregues no seu app</li>
+      <li>Check-in semanal, com feedback do time sobre a sua evolução</li>
+      <li>Grupo de suporte no WhatsApp, com nosso time real (sem IA respondendo por nós)</li>
+      <li>Treino atualizado 3x ao longo do ciclo trimestral</li>
+      <li>Call de Entrega de Resultados ao fim do ciclo</li>
+      <li>Reavaliação física periódica</li>
+      <li>Desconto em suplementos parceiros</li>
+    </ul>
+  </div>
+
+  <div class="card reveal">
+    <span class="kicker">quem cuida de você</span>
+    <h2>Um time, não uma pessoa só</h2>
+    <p>Na Nexxo, você não é acompanhado por um profissional isolado — é um time trabalhando junto pelo seu resultado.</p>
+    <div class="team">
+      <div class="team-role">
+        <div class="role-name">Nutricionista</div>
+        <div class="role-desc">plano alimentar e condutas</div>
+      </div>
+      <div class="team-role">
+        <div class="role-name">Personal Trainer</div>
+        <div class="role-desc">plano de treino e evolução</div>
+      </div>
+      <div class="team-role">
+        <div class="role-name">Time de suporte</div>
+        <div class="role-desc">dúvidas e acompanhamento no grupo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn reveal">
+    <span class="kicker">antes de mais nada</span>
+    <p>Salve o contato do grupo de suporte na sua agenda. Isso evita que você perca algum aviso ou link importante, e agiliza na hora de tirar dúvidas — a comunicação é a base de todo o processo.</p>
+  </div>
+
+  <div class="card reveal">
+    <span class="kicker">seu app</span>
+    <h2>App único de nutrição e treino</h2>
+    <p>Todo o seu acompanhamento roda num único aplicativo — sem alternar entre plataformas diferentes. Lá você encontra:</p>
+    <ul>
+      <li>Seu plano alimentar completo</li>
+      <li>Seu plano de treino, atualizado a cada ciclo</li>
+      <li>Espaço para registrar refeições e evolução</li>
+      <li>Seus questionários e avaliações</li>
+    </ul>
+  </div>
+
+  <div class="card reveal">
+    <span class="kicker">check-in semanal</span>
+    <h2>Por que o check-in importa</h2>
+    <p>O check-in é a ferramenta que mantém o time por dentro do que está acontecendo com você — é o que permite ajustar dieta e treino com precisão, em vez de ficar no achismo.</p>
+    <p>Responder toda semana, mesmo nas semanas difíceis, é o que torna o acompanhamento realmente eficaz. Evite ao máximo pular — quanto mais dados o time tem, melhores são as decisões pelo seu resultado.</p>
+  </div>
+
+  <div class="card reveal">
+    <span class="kicker">como trabalhamos</span>
+    <h2>Comunicação em primeiro lugar</h2>
+    <p>Aqui não há espaço para julgamento. Somos um time, e nossas interações sempre vão buscar a sua melhora — mesmo quando a semana não sair como o planejado.</p>
+    <p>Nossas condutas dependem da coleta de dados, e essa coleta depende muito de você. Quanto mais você se comunica com o time, melhor conseguimos te ajudar.</p>
+  </div>
+
+  <div class="card reveal">
+    <span class="kicker">vigência</span>
+    <h2>Como funciona o seu ciclo</h2>
+    <p>A vigência do seu plano começa a partir do envio do seu plano alimentar e treino, e do acesso ao app. Ao final do período contratado, os serviços são pausados até que haja renovação, upgrade de plano ou início de um novo ciclo.</p>
+  </div>
+
+  <div class="cta reveal">
+    <h2>Pronto para começar?</h2>
+    <p>Siga os passos abaixo, nessa ordem, pra deixar tudo certo antes da sua primeira call.</p>
+    <div class="steps-row">
+      <div class="step">
+        <span class="step-label">Passo 1</span>
+        <a href="https://forms.gle/HXddvDyQ4NPHPnAp7" class="btn pulse" target="_blank" rel="noopener">Assinar o termo</a>
+      </div>
+      <div class="step">
+        <span class="step-label">Passo 2</span>
+        <a href="https://typebot.co/pre-consulta-nutriademir" class="btn outline" target="_blank" rel="noopener">Responder o questionário inicial</a>
+      </div>
+    </div>
+    <p class="cta-note">⚠️ o questionário só libera depois de assinar o termo — <b>comece por ele</b></p>
+    <div class="social-row">
+      <a href="https://instagram.com/consultoria.nexxo" class="social-btn instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="#" class="social-btn whatsapp" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 2a8 8 0 0 1 8 8 7.9 7.9 0 0 1-12.4 6.5l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 0 1 12 4zm-3.4 4.1c-.2 0-.5 0-.7.3-.3.3-.9.9-.9 2.1 0 1.3.9 2.5 1.1 2.7.1.1 1.8 2.9 4.5 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3l-1.8-.9c-.2-.1-.4-.2-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <p class="footer-note reveal">nexxo · @consultoria.nexxo — vamos juntos mudar a sua história</p>
+
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('in-view'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<script>
+(function(){
+  var TOKEN = "2035";
+  var KEY = "nexxo_bv_basic_ok";
+  var gate = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var btn = document.getElementById('gate-btn');
+  var err = document.getElementById('gate-error');
+  var card = document.getElementById('gate-card');
+  function unlock(remember){
+    document.body.classList.remove('locked');
+    gate.style.display = 'none';
+    if (remember) { try { localStorage.setItem(KEY, '1'); } catch(e){} }
+  }
+  try { if (localStorage.getItem(KEY) === '1') unlock(false); } catch(e){}
+  function tryUnlock(){
+    if (input.value.trim() === TOKEN) { unlock(true); }
+    else {
+      err.classList.add('show');
+      card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+      input.value=''; input.focus();
+    }
+  }
+  btn.addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter') tryUnlock(); });
+})();
+</script>
+</body>
+</html>

@@ -5,16 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nexxo | Boas-vindas</title>
 <link rel="icon" href="/assets/favicon.png">
+<meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://nexxo.fit/boasvindasAdvanced/">
-<meta property="og:title" content="Nexxo | Boas-vindas">
-<meta property="og:description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
-<meta property="og:image" content="https://nexxo.fit/assets/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Nexxo | Boas-vindas">
-<meta name="twitter:description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
-<meta name="twitter:image" content="https://nexxo.fit/assets/og-image.jpg">
+<link rel="canonical" href="https://nexxo.fit/y12izc14/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -32,6 +25,24 @@
   body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.65; -webkit-font-smoothing:antialiased;}
   .wrap{max-width:var(--max); margin:0 auto; padding:88px 24px 120px;}
   h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.02em;}
+
+  /* GATE */
+  body.locked{overflow:hidden;}
+  body.locked .site-content{display:none;}
+  .gate{position:fixed; inset:0; z-index:100; background:var(--bg); display:flex; align-items:center; justify-content:center; padding:24px;}
+  .gate-card{max-width:340px; width:100%; text-align:center;}
+  .gate-icon{width:52px; height:52px; margin:0 auto 22px; border-radius:50%; background:var(--teal-dim); display:flex; align-items:center; justify-content:center;}
+  .gate-icon svg{width:22px; height:22px; color:var(--teal);}
+  .gate-card h2{font-size:19px; margin-bottom:8px;}
+  .gate-card p{font-size:13.5px; color:var(--text-muted); margin-bottom:26px;}
+  .gate-input{width:100%; padding:15px 16px; border-radius:12px; border:1px solid var(--line-strong); background:var(--bg-card); color:var(--text); font-size:22px; text-align:center; letter-spacing:8px; margin-bottom:14px; font-family:var(--font-display); font-weight:600;}
+  .gate-input:focus{outline:none; border-color:var(--orange);}
+  .gate-btn{width:100%; padding:15px; border-radius:999px; background:var(--orange); color:#fff; border:none; font-weight:600; font-size:15px; cursor:pointer; font-family:var(--font-body);}
+  .gate-btn:hover{opacity:.9;}
+  .gate-error{color:var(--orange); font-size:12.5px; margin-top:14px; opacity:0; transition:opacity .2s;}
+  .gate-error.show{opacity:1;}
+  .gate-card.shake{animation:shake .4s;}
+  @keyframes shake{ 20%,60%{transform:translateX(-8px);} 40%,80%{transform:translateX(8px);} }
 
   /* SCROLL REVEAL */
   .reveal{opacity:0; transform:translateY(36px); transition:opacity 1s var(--ease), transform 1s var(--ease);}
@@ -145,29 +156,46 @@
   .footer-note{text-align:center; margin-top:40px; font-size:12px; color:var(--text-faint); font-family:var(--font-display); font-weight:500; letter-spacing:0.03em;}
 </style>
 </head>
-<body>
-<div class="wrap">
+<body class="locked">
+
+<div class="gate" id="gate">
+  <div class="gate-card" id="gate-card">
+    <div class="gate-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+    <h2>Acesso restrito</h2>
+    <p>Digite o código que você recebeu pra ver seu documento de boas-vindas.</p>
+    <input type="text" inputmode="numeric" class="gate-input" id="gate-input" maxlength="4" placeholder="••••" autocomplete="off">
+    <button class="gate-btn" id="gate-btn">Entrar</button>
+    <p class="gate-error" id="gate-error">Código incorreto, tenta de novo.</p>
+  </div>
+</div>
+
+<div class="wrap site-content">
 
   <div class="hero reveal">
     <div class="logo"><span class="dot"></span>nexxo</div>
-    <div class="status">bem-vindo(a)</div>
+    <div class="status">bem-vindo(a) · plano Pro</div>
     <h1>Agora você faz parte<br>do <em>sistema Nexxo</em>.</h1>
     <p>Nutrição e treino conectados, com um time de verdade acompanhando cada etapa. Leia esse documento com atenção — ele explica como tudo funciona a partir de agora.</p>
   </div>
 
   <div class="card reveal">
-    <span class="kicker">seu acompanhamento inclui</span>
+    <span class="kicker">seu acompanhamento Pro inclui</span>
     <h2>Veja o que está incluso</h2>
-    <p>Independente do plano escolhido, o seu acompanhamento Nexxo conta com:</p>
+    <p>Seu plano Nexxo Pro (ciclo anual) conta com:</p>
     <ul>
       <li>Questionário inicial integrado, pra entender rotina, objetivo e limitações</li>
       <li>Consulta/call inicial para elaboração do seu plano alimentar e de treino</li>
       <li>Avaliação física inicial, com reavaliações periódicas ao longo do ciclo</li>
+      <li>Avaliação postural completa, com PDF</li>
       <li>Plano alimentar + treino personalizados, entregues no seu app</li>
       <li>Check-in semanal, com feedback do time sobre a sua evolução</li>
       <li>Grupo de suporte no WhatsApp, com nosso time real (sem IA respondendo por nós)</li>
-      <li>Treino atualizado periodicamente, conforme seu corpo evolui</li>
-      <li>Call de Entrega de Resultados, mostrando sua evolução em fotos e medidas</li>
+      <li>Treino atualizado de 10 a 12x ao longo do ciclo anual</li>
+      <li>Sessão com a psicóloga do time</li>
+      <li>Recuperação corporal (miofascial, ventosa, drenagem) com desconto</li>
+      <li>Suporte iFood — analisamos o cardápio de até 5 restaurantes pra você</li>
+      <li>Call de Entrega de Resultados a cada 3 meses</li>
+      <li>Melhor custo-benefício por mês entre os três planos</li>
     </ul>
   </div>
 
@@ -269,6 +297,34 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<script>
+(function(){
+  var TOKEN = "6499";
+  var KEY = "nexxo_bv_pro_ok";
+  var gate = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var btn = document.getElementById('gate-btn');
+  var err = document.getElementById('gate-error');
+  var card = document.getElementById('gate-card');
+  function unlock(remember){
+    document.body.classList.remove('locked');
+    gate.style.display = 'none';
+    if (remember) { try { localStorage.setItem(KEY, '1'); } catch(e){} }
+  }
+  try { if (localStorage.getItem(KEY) === '1') unlock(false); } catch(e){}
+  function tryUnlock(){
+    if (input.value.trim() === TOKEN) { unlock(true); }
+    else {
+      err.classList.add('show');
+      card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+      input.value=''; input.focus();
+    }
+  }
+  btn.addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter') tryUnlock(); });
+})();
 </script>
 </body>
 </html>
