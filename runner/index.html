@@ -78,26 +78,26 @@
   .journey-head h2{font-size:clamp(22px,3.5vw,28px); max-width:520px; margin:0 auto;}
 
   .journey-steps{position:relative;}
-  .step{position:relative; height:130vh;}
+  .step{position:relative; height:95vh;}
   .step-q, .step-a{
     position:absolute; max-width:440px; padding:0 28px; font-size:15px; line-height:1.55;
     text-shadow:0 2px 16px rgba(0,0,0,0.55);
   }
-  .step-q{top:10vh; left:0; font-style:italic; color:var(--text-faint); font-size:16px;}
-  .step-a{top:54vh; right:0; text-align:right; color:var(--text);}
+  .step-q{top:8vh; left:0; font-style:italic; color:var(--text-faint); font-size:16px;}
+  .step-a{top:42vh; right:0; text-align:right; color:var(--text);}
   .step-a b{color:var(--text); font-weight:600;}
-  .step:last-child{height:78vh;}
+  .step:last-child{height:50vh;}
   .reveal-left{opacity:0; transform:translateX(-36px); transition:opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);}
   .reveal-left.in-view{opacity:1; transform:translateX(0);}
   .reveal-right{opacity:0; transform:translateX(36px); transition:opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1);}
   .reveal-right.in-view{opacity:1; transform:translateX(0);}
   @media (prefers-reduced-motion:reduce){ .reveal-left,.reveal-right{opacity:1; transform:none; transition:none;} }
   @media (max-width:820px){
-    .step{height:105vh;}
+    .step{height:82vh;}
     .step-q,.step-a{max-width:82%; padding:0 20px;}
-    .step-q{top:8vh;}
-    .step-a{top:46vh;}
-    .step:last-child{height:66vh;}
+    .step-q{top:6vh;}
+    .step-a{top:36vh;}
+    .step:last-child{height:44vh;}
   }
 
   /* PRICE REVEAL */
