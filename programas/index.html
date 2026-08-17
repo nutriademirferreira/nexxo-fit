@@ -44,14 +44,21 @@
   @media (max-width:560px){ .programs{grid-template-columns:1fr;} }
 
   .program{
-    border:1px solid var(--line-strong); border-radius:var(--radius); padding:28px 22px;
+    border:1px solid var(--line-strong); border-radius:var(--radius); overflow:hidden;
     background:var(--bg-card); display:flex; flex-direction:column; text-decoration:none; color:var(--text);
     transition:transform .3s ease, border-color .3s ease;
   }
   .program:hover{transform:translateY(-4px); border-color:var(--orange);}
+  .program-photo{width:100%; height:160px; object-fit:cover; display:block; background:var(--bg-elevated);}
+  .program-photo-fallback{
+    width:100%; height:160px; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:800; font-size:15px; color:var(--text-faint);
+    letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .program-body{padding:22px 22px 26px; display:flex; flex-direction:column; flex:1;}
   .program-icon{
-    width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    margin-bottom:18px; font-size:18px; font-weight:700; font-family:var(--font-display);
+    width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px; font-size:15px; font-weight:700; font-family:var(--font-display);
   }
   .program-name{font-size:19px; font-weight:700; margin-bottom:6px;}
   .program-tag{
@@ -67,6 +74,7 @@
   .runner .program-icon{background:var(--teal-dim); color:var(--teal);}
   .femme .program-icon{background:var(--orange-dim); color:var(--orange);}
   .hyper .program-icon{background:var(--teal-dim); color:var(--teal);}
+  .femme .program-photo-fallback{background:linear-gradient(145deg, rgba(240,106,41,0.16), var(--bg-elevated));}
 
   .footer-note{text-align:center; margin-top:56px; font-size:12px; color:var(--text-faint); font-family:var(--font-display); font-weight:500; letter-spacing:0.02em;}
 </style>
@@ -83,35 +91,47 @@
   <div class="programs">
 
     <a href="/slim/" class="program slim">
-      <div class="program-icon">S</div>
-      <div class="program-name">Nexxo Slim</div>
-      <div class="program-tag">Emagrecimento</div>
-      <p class="program-desc">Pra quem quer emagrecer de verdade, sem o efeito sanfona: dieta, treino, suplementação e análise de exames focados em resultado.</p>
-      <span class="program-cta">Ver planos →</span>
+      <img class="program-photo" src="/assets/programas/slim.png" alt="Nexxo Slim">
+      <div class="program-body">
+        <div class="program-icon">S</div>
+        <div class="program-name">Nexxo Slim</div>
+        <div class="program-tag">Emagrecimento</div>
+        <p class="program-desc">Pra quem quer emagrecer de verdade, sem o efeito sanfona: dieta, treino, suplementação e análise de exames focados em resultado.</p>
+        <span class="program-cta">Ver planos →</span>
+      </div>
     </a>
 
     <a href="/runner/" class="program runner">
-      <div class="program-icon">R</div>
-      <div class="program-name">Nexxo Runner</div>
-      <div class="program-tag">Corrida · iniciante e intermediário</div>
-      <p class="program-desc">Pra quem está começando a correr ou quer evoluir sua performance, com treino e nutrição que aguentam o ritmo.</p>
-      <span class="program-cta">Ver planos →</span>
+      <img class="program-photo" src="/assets/programas/runner.jpg" alt="Nexxo Runner">
+      <div class="program-body">
+        <div class="program-icon">R</div>
+        <div class="program-name">Nexxo Runner</div>
+        <div class="program-tag">Corrida · iniciante e intermediário</div>
+        <p class="program-desc">Pra quem está começando a correr ou quer evoluir sua performance, com treino e nutrição que aguentam o ritmo.</p>
+        <span class="program-cta">Ver planos →</span>
+      </div>
     </a>
 
     <a href="/femme/" class="program femme">
-      <div class="program-icon">F</div>
-      <div class="program-name">Nexxo Femme</div>
-      <div class="program-tag">Mulheres 35+</div>
-      <p class="program-desc">Pra mulheres que querem cuidar da longevidade, da pele e da transição pra menopausa com nutrição e treino de verdade.</p>
-      <span class="program-cta">Ver planos →</span>
+      <div class="program-photo-fallback">Nexxo Femme</div>
+      <div class="program-body">
+        <div class="program-icon">F</div>
+        <div class="program-name">Nexxo Femme</div>
+        <div class="program-tag">Mulheres 35+</div>
+        <p class="program-desc">Pra mulheres que querem cuidar da longevidade, da pele e da transição pra menopausa com nutrição e treino de verdade.</p>
+        <span class="program-cta">Ver planos →</span>
+      </div>
     </a>
 
     <a href="/hyper/" class="program hyper">
-      <div class="program-icon">H</div>
-      <div class="program-name">Nexxo Hyper</div>
-      <div class="program-tag">Hipertrofia</div>
-      <p class="program-desc">Pra quem busca ganho de massa muscular de verdade — homens e mulheres — com estratégia, não achismo.</p>
-      <span class="program-cta">Ver planos →</span>
+      <img class="program-photo" src="/assets/programas/hyper.png" alt="Nexxo Hyper">
+      <div class="program-body">
+        <div class="program-icon">H</div>
+        <div class="program-name">Nexxo Hyper</div>
+        <div class="program-tag">Hipertrofia</div>
+        <p class="program-desc">Pra quem busca ganho de massa muscular de verdade — homens e mulheres — com estratégia, não achismo.</p>
+        <span class="program-cta">Ver planos →</span>
+      </div>
     </a>
 
   </div>
