@@ -27,7 +27,7 @@
       name: 'Ana Mondini',
       role: 'Psicóloga',
       desc: 'especialista em transtorno alimentar',
-      image: null // <- falta a foto: mandar o arquivo
+      image: '/assets/time/ana.jpg' // origem só tinha 552px; trocar se aparecer uma maior
     },
     {
       name: 'Dr. Daniel',
