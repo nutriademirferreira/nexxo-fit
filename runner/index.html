@@ -67,7 +67,13 @@
   /* SCROLL REVEAL */
   .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1);}
   .reveal.in-view{opacity:1; transform:translateY(0);}
-  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+  .side-left, .side-right{opacity:0; transition:opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1);}
+  .side-left{transform:translateX(-56px);}
+  .side-right{transform:translateX(56px);}
+  .side-left.in-view, .side-right.in-view{opacity:1; transform:translateX(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal, .side-left, .side-right{opacity:1; transform:none; transition:none;}
+  }
 
   /* JORNADA — pontos de entrega, dor -> solução, revelados par a par no scroll */
   .journey{text-align:center; padding:6vh 24px 2vh; margin-bottom:0;}
@@ -118,8 +124,8 @@
   .price-reveal-row p{color:var(--text-muted); font-size:13.5px; margin-bottom:16px;}
 
   /* PLANS */
-  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:12vh; margin-bottom:52px;}
-  @media (max-width:820px){ .plans{grid-template-columns:1fr; margin-top:8vh;} }
+  .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:24vh; margin-bottom:52px;}
+  @media (max-width:820px){ .plans{grid-template-columns:1fr; margin-top:16vh;} }
   .plan{
     border-radius:var(--radius); padding:28px 24px;
     display:flex; flex-direction:column; position:relative;
@@ -225,7 +231,7 @@
     <div class="scroll-hint">role pra ver toda a entrega ↓</div>
   </div>
 
-  <div class="mentoria">
+  <div class="mentoria side-left">
     <div class="mentoria-inner glass">
       <span class="mentoria-tag">★ diferencial Nexxo</span>
       <h3>Mentoria quinzenal com especialistas</h3>
@@ -244,7 +250,7 @@
     </div>
   </div>
 
-  <div class="journey reveal">
+  <div class="journey side-right">
     <div class="journey-head">
       <span class="kicker">sua entrega Runner</span>
       <h2>O que resolve o seu problema, passo a passo</h2>
@@ -280,7 +286,7 @@
 
   <div class="plans" id="plans">
 
-    <div class="plan glass">
+    <div class="plan glass side-left">
       <div class="plan-name">Nexxo Runner Basic</div>
       <div class="plan-cycle">Ciclo trimestral · 3 meses</div>
       <div class="price-teaser">🔒 valor oculto</div>
@@ -303,7 +309,7 @@
       </ul>
     </div>
 
-    <div class="plan glass featured">
+    <div class="plan glass featured side-right">
       <span class="plan-badge">mais escolhido</span>
       <div class="plan-name">Nexxo Runner Advanced</div>
       <div class="plan-cycle">Ciclo semestral · 6 meses</div>
@@ -323,7 +329,7 @@
       </ul>
     </div>
 
-    <div class="plan glass">
+    <div class="plan glass side-left">
       <div class="plan-name">Nexxo Runner Pro</div>
       <div class="plan-cycle">Ciclo anual · 12 meses</div>
       <div class="price-teaser">🔒 valor oculto</div>
@@ -341,12 +347,12 @@
 
   </div>
 
-  <div class="price-reveal-row" id="priceRevealRow">
+  <div class="price-reveal-row side-right" id="priceRevealRow">
     <p>Você já viu tudo o que está incluso. Agora, os valores:</p>
     <button class="btn" id="revealPricesBtn">Ver valores dos planos</button>
   </div>
 
-  <div class="addon glass">
+  <div class="addon glass side-left">
     <div class="addon-head">
       <h3>+ Acompanhamento Médico</h3>
       <span class="addon-tag">upgrade opcional</span>
@@ -359,7 +365,7 @@
     </div>
   </div>
 
-  <div class="cta glass">
+  <div class="cta glass side-right">
     <h2>Comece a correr por aqui</h2>
     <p>Escolha o plano que faz sentido pro seu momento e deixe o resto com a gente.</p>
     <a href="#plans" class="btn">Quero começar</a>
@@ -451,7 +457,7 @@
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+  document.querySelectorAll('.reveal, .side-left, .side-right').forEach(function(el){ revealObserver.observe(el); });
 
   var stepObserver = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
