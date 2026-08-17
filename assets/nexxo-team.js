@@ -39,7 +39,8 @@
       name: 'Karina Gonçalves',
       role: 'Líder do Time de Suporte',
       desc: 'especialista em nutrição esportiva e saúde da mulher',
-      image: '/assets/time/karina.jpg'
+      image: '/assets/time/karina.jpg',
+      focus: 'center top' // foto é quadrada, card é 16:10 — sem isso corta o rosto dela
     }
   ];
 
@@ -80,6 +81,7 @@
       img.src = member.image;
       img.alt = headline(member);
       img.loading = 'lazy';
+      if (member.focus) img.style.objectPosition = member.focus;
       // se a foto falhar, cai no bloco de iniciais em vez de ícone quebrado
       img.onerror = function () {
         img.remove();
