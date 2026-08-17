@@ -36,9 +36,9 @@
       image: null
     },
     {
-      name: 'Karina',
-      role: 'Time de suporte',
-      desc: 'dúvidas do dia a dia no grupo',
+      name: 'Karina Gonçalves',
+      role: 'Líder do Time de Suporte',
+      desc: 'especialista em nutrição esportiva e saúde da mulher',
       image: null
     }
   ];
@@ -239,10 +239,20 @@
 
     // offset pra o cartão não cobrir o texto que está sendo lido
     var OFFSET_X = 26, OFFSET_Y = 24;
+    var EDGE_PAD = 16;
 
     document.addEventListener('mousemove', function (e) {
-      targetX = e.clientX + OFFSET_X;
-      targetY = e.clientY + OFFSET_Y;
+      // mede o cartão em vez de fixar 320x250, pra não desencontrar do CSS
+      var w = floats[0] ? floats[0].offsetWidth || 320 : 320;
+      var h = floats[0] ? floats[0].offsetHeight || 250 : 250;
+
+      // perto da borda o cartão vira pro outro lado do cursor, senão ficaria cortado
+      var ox = (e.clientX + OFFSET_X + w + EDGE_PAD > window.innerWidth) ? -(w + OFFSET_X) : OFFSET_X;
+      var oy = (e.clientY + OFFSET_Y + h + EDGE_PAD > window.innerHeight) ? -(h + OFFSET_Y) : OFFSET_Y;
+
+      targetX = Math.max(EDGE_PAD, e.clientX + ox);
+      targetY = Math.max(EDGE_PAD, e.clientY + oy);
+
       if (!running) { running = true; requestAnimationFrame(tick); }
     }, { passive: true });
 
