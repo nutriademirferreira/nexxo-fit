@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexxo Runner | Teste de scroll</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#141B1F;
+    --orange:#F06A29; --orange-dim:rgba(240,106,41,0.14);
+    --teal:#1BA892; --teal-dim:rgba(27,168,146,0.16);
+    --text:#FFFFFF; --text-muted:rgba(255,255,255,0.78); --text-faint:rgba(255,255,255,0.55);
+    --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:var(--bg); color:var(--text); font-family:var(--font-body);}
+  body{position:relative;}
+
+  #scrub-canvas{
+    position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; display:block;
+  }
+  .scrim{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(20,27,31,0.55) 0%, rgba(20,27,31,0.25) 30%, rgba(20,27,31,0.35) 70%, rgba(20,27,31,0.8) 100%);
+  }
+
+  .content{position:relative; z-index:2;}
+  .loading{
+    position:fixed; inset:0; z-index:10; background:var(--bg); display:flex; align-items:center; justify-content:center;
+    color:var(--text-faint); font-size:13px; letter-spacing:0.05em; transition:opacity .5s ease;
+  }
+  .loading.hide{opacity:0; pointer-events:none;}
+
+  .section{min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 24px;}
+  .kicker{font-size:11px; font-weight:600; color:var(--teal); background:var(--teal-dim); padding:6px 14px; border-radius:999px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:22px;}
+  h1{font-family:var(--font-display); font-weight:800; font-size:clamp(34px,7vw,60px); line-height:1.08; margin-bottom:20px;}
+  h1 em{font-style:normal; color:var(--orange);}
+  h2{font-family:var(--font-display); font-weight:700; font-size:clamp(24px,4vw,36px); margin-bottom:16px;}
+  p{color:var(--text-muted); font-size:16px; max-width:520px; margin:0 auto; line-height:1.7;}
+  .tag{display:inline-block; font-size:11px; color:var(--text-faint); font-family:var(--font-display); margin-top:24px; letter-spacing:0.04em;}
+</style>
+</head>
+<body>
+
+<canvas id="scrub-canvas"></canvas>
+<div class="scrim"></div>
+<div class="loading" id="loading">carregando…</div>
+
+<div class="content">
+  <div class="section">
+    <div class="kicker">nexxo · runner</div>
+    <h1>O ponto onde <em>sua corrida</em> se conecta.</h1>
+    <p>Role a página até o fim — o vídeo acompanha exatamente o seu scroll, do início ao fim.</p>
+    <div class="tag">[placeholder de teste — conteúdo de vendas ainda não é este]</div>
+  </div>
+
+  <div class="section">
+    <h2>Mês 1 — Diagnóstico e base</h2>
+    <p>Avaliação do seu nível atual, histórico de corrida e objetivo. Aqui montamos a base seguraque vai sustentar toda a evolução.</p>
+  </div>
+
+  <div class="section">
+    <h2>Mês 2-3 — Construção</h2>
+    <p>Volume e intensidade progressivos, ajustados semana a semana pelo check-in. Nutrição alinhada ao gasto real de quem treina pra correr.</p>
+  </div>
+
+  <div class="section">
+    <h2>Mês 4-6 — Performance</h2>
+    <p>Estratégias específicas pro seu objetivo — 5km, 10km, meia ou maratona — com suplementação e ajuste fino de treino.</p>
+  </div>
+
+  <div class="section">
+    <h2>Pronto pra começar a correr de verdade?</h2>
+    <p>Essa é só a demonstração do efeito de scroll. O conteúdo de vendas completo vem na próxima etapa.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TOTAL_FRAMES = 302;
+  var canvas = document.getElementById('scrub-canvas');
+  var ctx = canvas.getContext('2d');
+  var loading = document.getElementById('loading');
+  var images = new Array(TOTAL_FRAMES);
+  var loadedCount = 0;
+  var currentFrame = -1;
+
+  function pad(n){ return String(n).padStart(4, '0'); }
+
+  function resizeCanvas(){
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawFrame(currentFrame === -1 ? 0 : currentFrame, true);
+  }
+
+  function drawFrame(index, force){
+    if (index === currentFrame && !force) return;
+    var img = images[index];
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+    currentFrame = index;
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var ir = img.naturalWidth / img.naturalHeight;
+    var vr = vw / vh;
+    var dw, dh, dx, dy;
+    if (vr > ir) { dw = vw; dh = vw / ir; dx = 0; dy = (vh - dh) / 2; }
+    else { dh = vh; dw = vh * ir; dy = 0; dx = (vw - dw) / 2; }
+    ctx.clearRect(0, 0, vw, vh);
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  function onScroll(){
+    var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    var idx = Math.round(progress * (TOTAL_FRAMES - 1));
+    drawFrame(idx);
+  }
+
+  for (var i = 0; i < TOTAL_FRAMES; i++) {
+    var img = new Image();
+    img.onload = function(){
+      loadedCount++;
+      if (loadedCount === TOTAL_FRAMES) {
+        loading.classList.add('hide');
+        onScroll();
+      } else if (loadedCount === 1) {
+        drawFrame(0, true);
+      }
+    };
+    img.src = '/assets/runner-frames/frame-' + pad(i + 1) + '.jpg';
+    images[i] = img;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+})();
+</script>
+</body>
+</html>
