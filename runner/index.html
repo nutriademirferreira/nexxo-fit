@@ -36,13 +36,30 @@
   .back-link:hover{color:var(--text-muted);}
 
   /* HERO */
-  .hero{text-align:center; margin-bottom:60px;}
   .logo{font-family:var(--font-display); font-weight:800; font-size:22px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:26px;}
   .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--orange);}
   .logo .product-tag{font-weight:500; color:var(--text-faint); font-size:16px;}
-  .hero h1{font-size:clamp(30px,5vw,44px); line-height:1.12; margin-bottom:16px;}
-  .hero h1 em{font-style:normal; color:var(--orange);}
-  .hero p{color:var(--text-muted); font-size:16px; max-width:520px; margin:0 auto;}
+
+  /* SCROLL-SCRUBBED VIDEO HERO */
+  .scroll-hero{position:relative; height:260vh;}
+  .scroll-hero-sticky{
+    position:sticky; top:0; height:100vh; overflow:hidden;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  #scrub-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block;}
+  .scroll-hero .scrim{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(20,27,31,0.1) 0%, rgba(20,27,31,0.2) 45%, rgba(20,27,31,0.92) 100%);
+  }
+  .scroll-hero-content{position:relative; z-index:2; text-align:center; padding:0 24px 72px; max-width:600px;}
+  .scroll-hero-content h1{font-size:clamp(30px,5vw,44px); line-height:1.12; margin-bottom:16px; color:var(--text);}
+  .scroll-hero-content h1 em{font-style:normal; color:var(--orange);}
+  .scroll-hero-content p{color:var(--text-muted); font-size:16px; max-width:520px; margin:0 auto;}
+  .scroll-hint{
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:2;
+    font-family:var(--font-body); font-size:11px; color:var(--text-faint);
+    text-transform:uppercase; letter-spacing:0.08em; opacity:0.8;
+  }
 
   /* PLANS */
   .plans{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:52px;}
@@ -149,15 +166,23 @@
 </style>
 </head>
 <body>
+
+<div class="scroll-hero" id="scrollHero">
+  <div class="scroll-hero-sticky">
+    <canvas id="scrub-canvas"></canvas>
+    <div class="scrim"></div>
+    <div class="scroll-hero-content">
+      <div class="logo"><span class="dot"></span>nexxo <span class="product-tag">· runner</span></div>
+      <h1>O ponto onde <em>sua corrida</em> se conecta.</h1>
+      <p>Treino de corrida estruturado pra quem está começando ou evoluindo — do zero até a sua primeira prova, ou melhorando seu tempo com uma base nutricional que aguenta o ritmo. Atendemos corredores iniciantes e intermediários.</p>
+    </div>
+    <div class="scroll-hint">role pra continuar ↓</div>
+  </div>
+</div>
+
 <div class="wrap">
 
   <a href="/programas/" class="back-link">&larr; todos os programas</a>
-
-  <div class="hero">
-    <div class="logo"><span class="dot"></span>nexxo <span class="product-tag">· runner</span></div>
-    <h1>O ponto onde <em>sua corrida</em> se conecta.</h1>
-    <p>Treino de corrida estruturado pra quem está começando ou evoluindo — do zero até a sua primeira prova, ou melhorando seu tempo com uma base nutricional que aguenta o ritmo. Atendemos corredores iniciantes e intermediários.</p>
-  </div>
 
   <div class="mentoria">
     <div class="mentoria-inner">
@@ -266,6 +291,65 @@
 </div>
 
 <script>
+(function(){
+  var TOTAL_FRAMES = 302;
+  var hero = document.getElementById('scrollHero');
+  var canvas = document.getElementById('scrub-canvas');
+  var ctx = canvas.getContext('2d');
+  var images = new Array(TOTAL_FRAMES);
+  var loadedCount = 0;
+  var currentFrame = -1;
+
+  function pad(n){ return String(n).padStart(4, '0'); }
+
+  function resizeCanvas(){
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = canvas.clientHeight * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    currentFrame = -1;
+    onScroll();
+  }
+
+  function drawFrame(index){
+    if (index === currentFrame) return;
+    var img = images[index];
+    if (!img || !img.complete || img.naturalWidth === 0) return;
+    currentFrame = index;
+    var vw = canvas.clientWidth, vh = canvas.clientHeight;
+    var ir = img.naturalWidth / img.naturalHeight;
+    var vr = vw / vh;
+    var dw, dh, dx, dy;
+    if (vr > ir) { dw = vw; dh = vw / ir; dx = 0; dy = (vh - dh) / 2; }
+    else { dh = vh; dw = vh * ir; dy = 0; dx = (vw - dw) / 2; }
+    ctx.clearRect(0, 0, vw, vh);
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  function onScroll(){
+    var rect = hero.getBoundingClientRect();
+    var total = hero.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var progress = total > 0 ? scrolled / total : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    drawFrame(Math.round(progress * (TOTAL_FRAMES - 1)));
+  }
+
+  for (var i = 0; i < TOTAL_FRAMES; i++) {
+    var img = new Image();
+    img.onload = function(){
+      loadedCount++;
+      if (loadedCount === 1) onScroll();
+    };
+    img.src = '/assets/runner-frames/frame-' + pad(i + 1) + '.jpg';
+    images[i] = img;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+})();
+
   document.querySelectorAll('.item-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const li = btn.closest('li');
