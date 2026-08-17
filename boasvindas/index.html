@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexxo | Boas-vindas</title>
+<link rel="icon" href="/assets/favicon.png">
+<meta name="description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexxo.fit/boasvindas/">
+<meta property="og:title" content="Nexxo | Boas-vindas">
+<meta property="og:description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
+<meta property="og:image" content="https://nexxo.fit/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nexxo | Boas-vindas">
+<meta name="twitter:description" content="Bem-vindo(a) à Consultoria Nexxo. Tudo o que você precisa saber para começar seu acompanhamento.">
+<meta name="twitter:image" content="https://nexxo.fit/assets/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#141B1F; --bg-elevated:#1B242A; --bg-card:#1C262C;
+    --line:rgba(255,255,255,0.09); --line-strong:rgba(255,255,255,0.16);
+    --orange:#F06A29; --orange-dim:rgba(240,106,41,0.12);
+    --teal:#1BA892; --teal-dim:rgba(27,168,146,0.14);
+    --text:#FFFFFF; --text-muted:rgba(255,255,255,0.72); --text-faint:rgba(255,255,255,0.48);
+    --font-display:'Poppins',sans-serif; --font-body:'Inter',sans-serif;
+    --radius:16px; --max:760px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:56px 24px 80px;}
+  h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em;}
+
+  /* HERO */
+  .hero{text-align:center; margin-bottom:52px;}
+  .logo{font-family:var(--font-display); font-weight:800; font-size:22px; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:26px;}
+  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--orange);}
+  .status{
+    font-family:var(--font-body); font-weight:600; font-size:11px; color:var(--teal);
+    background:var(--teal-dim); display:inline-block; padding:6px 14px; border-radius:999px;
+    text-transform:uppercase; letter-spacing:0.06em; margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(28px,5vw,40px); line-height:1.15; margin-bottom:16px;}
+  .hero h1 em{font-style:normal; color:var(--orange);}
+  .hero p{color:var(--text-muted); font-size:16px; max-width:560px; margin:0 auto;}
+
+  /* SECTION CARD */
+  .card{
+    border:1px solid var(--line-strong); border-radius:var(--radius); padding:30px 28px;
+    background:var(--bg-card); margin-bottom:20px;
+  }
+  .card h2{font-size:19px; margin-bottom:6px;}
+  .card .kicker{font-size:11px; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; display:block;}
+  .card p{color:var(--text-muted); font-size:14.5px; margin-bottom:12px;}
+  .card p:last-child{margin-bottom:0;}
+  .card ul{list-style:none; margin-top:14px;}
+  .card li{
+    font-size:14px; color:var(--text-muted); padding:8px 0 8px 22px; position:relative;
+    border-top:1px solid var(--line);
+  }
+  .card li:first-child{border-top:none;}
+  .card li::before{content:'+'; position:absolute; left:0; top:8px; color:var(--teal); font-weight:600;}
+
+  /* TEAM */
+  .team{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:8px;}
+  @media (max-width:600px){ .team{grid-template-columns:1fr;} }
+  .team-role{
+    background:var(--bg-elevated); border:1px solid var(--line-strong); border-radius:12px;
+    padding:18px 16px; text-align:center;
+  }
+  .team-role .role-name{font-family:var(--font-display); font-weight:600; font-size:14px; margin-bottom:4px;}
+  .team-role .role-desc{font-size:12.5px; color:var(--text-faint);}
+
+  /* WARNING */
+  .warn{
+    border:1px dashed var(--orange); border-radius:var(--radius); padding:22px 24px;
+    background:var(--orange-dim); margin-bottom:20px;
+  }
+  .warn .kicker{color:var(--orange);}
+  .warn p{color:var(--text);}
+
+  /* CTA */
+  .cta{
+    text-align:center; border:1px solid var(--line-strong); border-radius:var(--radius);
+    padding:36px 28px; background:var(--bg-card); margin-bottom:20px;
+  }
+  .cta h2{font-size:19px; margin-bottom:8px;}
+  .cta p{color:var(--text-muted); font-size:14px; margin-bottom:20px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; background:var(--orange); color:#fff;
+    font-family:var(--font-body); font-weight:600; font-size:14.5px; padding:13px 26px;
+    border-radius:999px; text-decoration:none; transition:opacity .15s;
+  }
+  .btn.outline{background:transparent; border:1px solid var(--line-strong); color:var(--text);}
+  .btn:hover{opacity:0.88;}
+  .cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+
+  .social-row{display:flex; gap:12px; justify-content:center; margin-top:18px;}
+  .social-btn{
+    width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--bg-elevated); border:1px solid var(--line-strong); color:var(--text); text-decoration:none;
+  }
+
+  .footer-note{text-align:center; margin-top:28px; font-size:12px; color:var(--text-faint); font-family:var(--font-display); font-weight:500; letter-spacing:0.02em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="logo"><span class="dot"></span>nexxo</div>
+    <div class="status">bem-vindo(a)</div>
+    <h1>Agora você faz parte do <em>sistema Nexxo</em>.</h1>
+    <p>Nutrição e treino conectados, com um time de verdade acompanhando cada etapa. Leia esse documento com atenção — ele explica como tudo funciona a partir de agora.</p>
+  </div>
+
+  <div class="card">
+    <span class="kicker">seu acompanhamento inclui</span>
+    <h2>Veja o que está incluso</h2>
+    <p>Independente do plano escolhido, o seu acompanhamento Nexxo conta com:</p>
+    <ul>
+      <li>Questionário inicial integrado, pra entender rotina, objetivo e limitações</li>
+      <li>Consulta/call inicial para elaboração do seu plano alimentar e de treino</li>
+      <li>Avaliação física inicial, com reavaliações periódicas ao longo do ciclo</li>
+      <li>Plano alimentar + treino personalizados, entregues no seu app</li>
+      <li>Check-in semanal, com feedback do time sobre a sua evolução</li>
+      <li>Grupo de suporte no WhatsApp, com nosso time real (sem IA respondendo por nós)</li>
+      <li>Treino atualizado periodicamente, conforme seu corpo evolui</li>
+      <li>Call de Entrega de Resultados, mostrando sua evolução em fotos e medidas</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="kicker">quem cuida de você</span>
+    <h2>Um time, não uma pessoa só</h2>
+    <p>Na Nexxo, você não é acompanhado por um profissional isolado — é um time trabalhando junto pelo seu resultado.</p>
+    <div class="team">
+      <div class="team-role">
+        <div class="role-name">Nutricionista</div>
+        <div class="role-desc">plano alimentar e condutas</div>
+      </div>
+      <div class="team-role">
+        <div class="role-name">Personal Trainer</div>
+        <div class="role-desc">plano de treino e evolução</div>
+      </div>
+      <div class="team-role">
+        <div class="role-name">Time de suporte</div>
+        <div class="role-desc">dúvidas e acompanhamento no grupo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <span class="kicker">antes de mais nada</span>
+    <p>Salve o contato do grupo de suporte na sua agenda. Isso evita que você perca algum aviso ou link importante, e agiliza na hora de tirar dúvidas — a comunicação é a base de todo o processo.</p>
+  </div>
+
+  <div class="card">
+    <span class="kicker">seu app</span>
+    <h2>App único de nutrição e treino</h2>
+    <p>Todo o seu acompanhamento roda num único aplicativo — sem alternar entre plataformas diferentes. Lá você encontra:</p>
+    <ul>
+      <li>Seu plano alimentar completo</li>
+      <li>Seu plano de treino, atualizado a cada ciclo</li>
+      <li>Espaço para registrar refeições e evolução</li>
+      <li>Seus questionários e avaliações</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="kicker">check-in semanal</span>
+    <h2>Por que o check-in importa</h2>
+    <p>O check-in é a ferramenta que mantém o time por dentro do que está acontecendo com você — é o que permite ajustar dieta e treino com precisão, em vez de ficar no achismo.</p>
+    <p>Responder toda semana, mesmo nas semanas difíceis, é o que torna o acompanhamento realmente eficaz. Evite ao máximo pular — quanto mais dados o time tem, melhores são as decisões pelo seu resultado.</p>
+  </div>
+
+  <div class="card">
+    <span class="kicker">como trabalhamos</span>
+    <h2>Comunicação em primeiro lugar</h2>
+    <p>Aqui não há espaço para julgamento. Somos um time, e nossas interações sempre vão buscar a sua melhora — mesmo quando a semana não sair como o planejado.</p>
+    <p>Nossas condutas dependem da coleta de dados, e essa coleta depende muito de você. Quanto mais você se comunica com o time, melhor conseguimos te ajudar.</p>
+  </div>
+
+  <div class="card">
+    <span class="kicker">vigência</span>
+    <h2>Como funciona o seu ciclo</h2>
+    <p>A vigência do seu plano começa a partir do envio do seu plano alimentar e treino, e do acesso ao app. Ao final do período contratado, os serviços são pausados até que haja renovação, upgrade de plano ou início de um novo ciclo.</p>
+  </div>
+
+  <div class="cta">
+    <h2>Pronto para começar?</h2>
+    <p>Siga os passos abaixo pra deixar tudo certo antes da sua primeira call.</p>
+    <div class="cta-row">
+      <a href="#" class="btn">Assinar o termo</a>
+      <a href="#" class="btn outline">Responder o questionário inicial</a>
+    </div>
+    <div class="social-row">
+      <a href="https://instagram.com/consultoria.nexxo" class="social-btn" aria-label="Instagram">IG</a>
+      <a href="#" class="social-btn" aria-label="WhatsApp">WA</a>
+    </div>
+  </div>
+
+  <p class="footer-note">nexxo · @consultoria.nexxo — vamos juntos mudar a sua história</p>
+
+</div>
+</body>
+</html>
