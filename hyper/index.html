@@ -28,6 +28,7 @@
     --radius:16px; --max:920px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
   body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6;}
   .wrap{max-width:var(--max); margin:0 auto; padding:56px 24px 80px;}
   h1,h2,h3{font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em;}
@@ -177,7 +178,7 @@
     </div>
   </div>
 
-  <div class="plans">
+  <div class="plans" id="plans">
 
     <div class="plan">
       <div class="plan-name">Nexxo Hyper Basic</div>
@@ -257,7 +258,7 @@
   <div class="cta">
     <h2>Comece a ganhar massa por aqui</h2>
     <p>Escolha o plano que faz sentido pro seu momento e deixe o resto com a gente.</p>
-    <a href="#" class="btn">Quero começar</a>
+    <a href="#plans" class="btn">Quero começar</a>
   </div>
 
   <p class="footer-note">nexxo hyper · @consultoria.nexxo</p>
