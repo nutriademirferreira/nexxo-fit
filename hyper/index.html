@@ -132,13 +132,20 @@
   }
 
   /* PRICE REVEAL */
-  .price-teaser{
-    display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-faint);
-    margin-bottom:22px; padding:10px 0;
+  .plans.revealed .plan-price .amount, .plans.revealed .plan-price .period, .plans.revealed .plan-total{
+    text-decoration:line-through; color:var(--text-faint);
   }
-  .plans.revealed .price-teaser{display:none;}
-  .price-block{display:none; margin-bottom:2px;}
-  .plans.revealed .price-block{display:block;}
+  .launch-block{display:none; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);}
+  .plans.revealed .launch-block{display:block;}
+  .launch-tag{
+    display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--teal); background:var(--teal-dim);
+    border:1px solid rgba(27,168,146,0.3); padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .launch-price{display:flex; align-items:baseline; gap:5px; margin-bottom:2px;}
+  .launch-price .amount{font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--orange);}
+  .launch-price .period{font-size:13px; color:var(--text-muted);}
+  .launch-total{font-size:12.5px; color:var(--text-faint);}
   .price-reveal-row{text-align:center; margin-bottom:28px;}
   .price-reveal-row p{color:var(--text-muted); font-size:13.5px; margin-bottom:16px;}
 
@@ -341,10 +348,12 @@
     <div class="plan glass side-left">
       <div class="plan-name">Nexxo Hyper Basic</div>
       <div class="plan-cycle">Ciclo trimestral · 3 meses</div>
-      <div class="price-teaser">🔒 valor oculto</div>
-      <div class="price-block">
-        <div class="plan-price"><span class="amount">R$498</span><span class="period">/mês</span></div>
-        <div class="plan-total">R$1.494 no ciclo · 3x sem juros</div>
+      <div class="plan-price"><span class="amount">R$598</span><span class="period">/mês</span></div>
+      <div class="plan-total">R$1.794 no ciclo · 3x sem juros</div>
+      <div class="launch-block">
+        <div class="launch-tag">Condição de lançamento</div>
+        <div class="launch-price"><span class="amount">R$498</span><span class="period">/mês</span></div>
+        <div class="launch-total">R$1.494 no ciclo · 3x sem juros</div>
       </div>
       <ul>
         <li><button class="item-toggle">Questionário inicial integrado<span class="chevron">+</span></button><div class="item-desc"><p>Vamos aprofundar nas suas necessidades para personalizar ao máximo sua alimentação e seu treino de hipertrofia.</p></div></li>
@@ -365,10 +374,12 @@
       <span class="plan-badge">mais escolhido</span>
       <div class="plan-name">Nexxo Hyper Advanced</div>
       <div class="plan-cycle">Ciclo semestral · 6 meses</div>
-      <div class="price-teaser">🔒 valor oculto</div>
-      <div class="price-block">
-        <div class="plan-price"><span class="amount">R$366</span><span class="period">/mês</span></div>
-        <div class="plan-total">R$2.194 no ciclo · 6x sem juros</div>
+      <div class="plan-price"><span class="amount">R$439</span><span class="period">/mês</span></div>
+      <div class="plan-total">R$2.634 no ciclo · 6x sem juros</div>
+      <div class="launch-block">
+        <div class="launch-tag">Condição de lançamento</div>
+        <div class="launch-price"><span class="amount">R$366</span><span class="period">/mês</span></div>
+        <div class="launch-total">R$2.194 no ciclo · 6x sem juros</div>
       </div>
       <ul>
         <li class="included">Tudo do Nexxo Hyper Basic</li>
@@ -381,10 +392,12 @@
     <div class="plan glass side-left">
       <div class="plan-name">Nexxo Hyper Pro</div>
       <div class="plan-cycle">Ciclo anual · 12 meses</div>
-      <div class="price-teaser">🔒 valor oculto</div>
-      <div class="price-block">
-        <div class="plan-price"><span class="amount">R$280</span><span class="period">/mês</span></div>
-        <div class="plan-total">R$3.360 no ciclo · 12x sem juros</div>
+      <div class="plan-price"><span class="amount">R$336</span><span class="period">/mês</span></div>
+      <div class="plan-total">R$4.032 no ciclo · 12x sem juros</div>
+      <div class="launch-block">
+        <div class="launch-tag">Condição de lançamento</div>
+        <div class="launch-price"><span class="amount">R$280</span><span class="period">/mês</span></div>
+        <div class="launch-total">R$3.360 no ciclo · 12x sem juros</div>
       </div>
       <ul>
         <li class="included">Tudo do Nexxo Hyper Advanced</li>
@@ -400,8 +413,8 @@
   </div>
 
   <div class="price-reveal-row side-right" id="priceRevealRow">
-    <p>Você já viu tudo o que está incluso. Agora, os valores:</p>
-    <button class="btn" id="revealPricesBtn">Ver valores dos planos</button>
+    <p>Toda entrada aberta neste momento tem uma condição especial de lançamento:</p>
+    <button class="btn" id="revealPricesBtn">Ver condição de lançamento</button>
   </div>
 
   <div class="addon glass side-left">
@@ -498,7 +511,7 @@
   var plansEl = document.getElementById('plans');
   revealBtn.addEventListener('click', function(){
     var nowRevealed = plansEl.classList.toggle('revealed');
-    revealBtn.textContent = nowRevealed ? 'Esconder valores dos planos' : 'Ver valores dos planos';
+    revealBtn.textContent = nowRevealed ? 'Ocultar condição de lançamento' : 'Ver condição de lançamento';
   });
 
   var revealObserver = new IntersectionObserver(function(entries){

@@ -77,6 +77,25 @@
   .plan-price .amount{font-family:var(--font-display); font-size:32px; font-weight:700;}
   .plan-price .period{font-size:13px; color:var(--text-muted);}
   .plan-total{font-size:12.5px; color:var(--text-faint); margin-bottom:22px;}
+
+  /* PRICE REVEAL */
+  .plans.revealed .plan-price .amount, .plans.revealed .plan-price .period, .plans.revealed .plan-total{
+    text-decoration:line-through; color:var(--text-faint);
+  }
+  .launch-block{display:none; margin-top:10px; padding-top:10px; border-top:1px dashed var(--line);}
+  .plans.revealed .launch-block{display:block;}
+  .launch-tag{
+    display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:600;
+    text-transform:uppercase; letter-spacing:0.04em; color:var(--teal); background:var(--teal-dim);
+    border:1px solid rgba(27,168,146,0.3); padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .launch-price{display:flex; align-items:baseline; gap:5px; margin-bottom:2px;}
+  .launch-price .amount{font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--orange);}
+  .launch-price .period{font-size:13px; color:var(--text-muted);}
+  .launch-total{font-size:12.5px; color:var(--text-faint);}
+  .price-reveal-row{text-align:center; margin:28px 0;}
+  .price-reveal-row p{color:var(--text-muted); font-size:13.5px; margin-bottom:16px;}
+
   .plan ul{list-style:none; margin-bottom:8px;}
   .plan li{
     font-size:13.5px; color:var(--text-muted); padding:9px 0 9px 20px; position:relative;
@@ -224,13 +243,18 @@
     </div>
   </div>
 
-  <div class="plans">
+  <div class="plans" id="plans">
 
     <div class="plan">
       <div class="plan-name">Nexxo Basic</div>
       <div class="plan-cycle">Ciclo trimestral · 3 meses</div>
-      <div class="plan-price"><span class="amount">R$498</span><span class="period">/mês</span></div>
-      <div class="plan-total">R$1.494 no ciclo · 3x sem juros</div>
+      <div class="plan-price"><span class="amount">R$598</span><span class="period">/mês</span></div>
+      <div class="plan-total">R$1.794 no ciclo · 3x sem juros</div>
+      <div class="launch-block">
+        <div class="launch-tag">Condição de lançamento</div>
+        <div class="launch-price"><span class="amount">R$498</span><span class="period">/mês</span></div>
+        <div class="launch-total">R$1.494 no ciclo · 3x sem juros</div>
+      </div>
       <ul>
         <li><button class="item-toggle">Questionário inicial integrado<span class="chevron">+</span></button><div class="item-desc"><p>Vamos aprofundar nas suas necessidades para personalizar ao máximo sua alimentação e seu treino.</p></div></li>
         <li><button class="item-toggle">Plano alimentar + treino entregue em no máximo 48h<span class="chevron">+</span></button><div class="item-desc"><p>Preencheu o formulário? A partir de agora é só aguardar: seu treino e dieta, otimizados para o seu objetivo, chegam em até 2 dias úteis.</p></div></li>
@@ -249,8 +273,13 @@
       <span class="plan-badge">mais escolhido</span>
       <div class="plan-name">Nexxo Advanced</div>
       <div class="plan-cycle">Ciclo semestral · 6 meses</div>
-      <div class="plan-price"><span class="amount">R$366</span><span class="period">/mês</span></div>
-      <div class="plan-total">R$2.194 no ciclo · 6x sem juros</div>
+      <div class="plan-price"><span class="amount">R$439</span><span class="period">/mês</span></div>
+      <div class="plan-total">R$2.634 no ciclo · 6x sem juros</div>
+      <div class="launch-block">
+        <div class="launch-tag">Condição de lançamento</div>
+        <div class="launch-price"><span class="amount">R$366</span><span class="period">/mês</span></div>
+        <div class="launch-total">R$2.194 no ciclo · 6x sem juros</div>
+      </div>
       <ul>
         <li class="included">Tudo do Nexxo Basic</li>
         <li><button class="item-toggle">Avaliação postural com PDF<span class="chevron">+</span></button><div class="item-desc"><p>Seu treino é montado em cima dessa avaliação. Os pontos de atenção que encontramos aqui têm impacto direto no seu resultado e na sua qualidade de vida. Você recebe tudo num PDF completo.</p></div></li>
@@ -262,8 +291,13 @@
     <div class="plan">
       <div class="plan-name">Nexxo Pro</div>
       <div class="plan-cycle">Ciclo anual · 12 meses</div>
-      <div class="plan-price"><span class="amount">R$280</span><span class="period">/mês</span></div>
-      <div class="plan-total">R$3.360 no ciclo · 12x sem juros</div>
+      <div class="plan-price"><span class="amount">R$336</span><span class="period">/mês</span></div>
+      <div class="plan-total">R$4.032 no ciclo · 12x sem juros</div>
+      <div class="launch-block">
+        <div class="launch-tag">Condição de lançamento</div>
+        <div class="launch-price"><span class="amount">R$280</span><span class="period">/mês</span></div>
+        <div class="launch-total">R$3.360 no ciclo · 12x sem juros</div>
+      </div>
       <ul>
         <li class="included">Tudo do Nexxo Advanced</li>
         <li><button class="item-toggle">Sessão com psicóloga do time<span class="chevron">+</span></button><div class="item-desc"><p>Um espaço com profissional de psicologia do time, pra apoiar o lado emocional do processo.</p></div></li>
@@ -275,6 +309,11 @@
       </ul>
     </div>
 
+  </div>
+
+  <div class="price-reveal-row">
+    <p>Toda entrada aberta neste momento tem uma condição especial de lançamento:</p>
+    <button class="btn" id="revealPricesBtn">Ver condição de lançamento</button>
   </div>
 
   <div class="addon">
@@ -311,6 +350,13 @@
 </div>
 
 <script>
+  var revealBtn = document.getElementById('revealPricesBtn');
+  var plansEl = document.getElementById('plans');
+  revealBtn.addEventListener('click', function(){
+    var nowRevealed = plansEl.classList.toggle('revealed');
+    revealBtn.textContent = nowRevealed ? 'Ocultar condição de lançamento' : 'Ver condição de lançamento';
+  });
+
   document.querySelectorAll('.item-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const li = btn.closest('li');
