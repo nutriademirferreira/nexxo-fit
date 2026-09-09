@@ -350,11 +350,6 @@
       <div class="plan-cycle">Ciclo trimestral · 3 meses</div>
       <div class="plan-price"><span class="amount">R$598</span><span class="period">/mês</span></div>
       <div class="plan-total">R$1.794 no ciclo · 3x sem juros</div>
-      <div class="launch-block">
-        <div class="launch-tag">Condição de lançamento</div>
-        <div class="launch-price"><span class="amount">R$498</span><span class="period">/mês</span></div>
-        <div class="launch-total">R$1.494 no ciclo · 3x sem juros</div>
-      </div>
       <ul>
         <li><button class="item-toggle">Questionário inicial integrado<span class="chevron">+</span></button><div class="item-desc"><p>Vamos aprofundar nas suas necessidades para personalizar ao máximo sua alimentação e seu treino de emagrecimento.</p></div></li>
         <li><button class="item-toggle">Plano alimentar com foco em emagrecimento, entregue em no máximo 48h<span class="chevron">+</span></button><div class="item-desc"><p>Preencheu o formulário? A partir de agora é só aguardar: seu treino e dieta, desenhados pra déficit calórico sustentável, chegam em até 2 dias úteis.</p></div></li>
@@ -377,11 +372,6 @@
       <div class="plan-cycle">Ciclo semestral · 6 meses</div>
       <div class="plan-price"><span class="amount">R$439</span><span class="period">/mês</span></div>
       <div class="plan-total">R$2.634 no ciclo · 6x sem juros</div>
-      <div class="launch-block">
-        <div class="launch-tag">Condição de lançamento</div>
-        <div class="launch-price"><span class="amount">R$366</span><span class="period">/mês</span></div>
-        <div class="launch-total">R$2.194 no ciclo · 6x sem juros</div>
-      </div>
       <ul>
         <li class="included">Tudo do Nexxo Slim Basic</li>
         <li><button class="item-toggle">Avaliação postural com PDF<span class="chevron">+</span></button><div class="item-desc"><p>Seu treino é montado em cima dessa avaliação. Os pontos de atenção que encontramos aqui têm impacto direto no seu resultado e na sua qualidade de vida. Você recebe tudo num PDF completo.</p></div></li>
@@ -395,11 +385,6 @@
       <div class="plan-cycle">Ciclo anual · 12 meses</div>
       <div class="plan-price"><span class="amount">R$336</span><span class="period">/mês</span></div>
       <div class="plan-total">R$4.032 no ciclo · 12x sem juros</div>
-      <div class="launch-block">
-        <div class="launch-tag">Condição de lançamento</div>
-        <div class="launch-price"><span class="amount">R$280</span><span class="period">/mês</span></div>
-        <div class="launch-total">R$3.360 no ciclo · 12x sem juros</div>
-      </div>
       <ul>
         <li class="included">Tudo do Nexxo Slim Advanced</li>
         <li><button class="item-toggle">Sessão com psicóloga do time<span class="chevron">+</span></button><div class="item-desc"><p>Um espaço com profissional de psicologia do time, pra apoiar o lado emocional do emagrecimento — inclusive a relação com comida.</p></div></li>
@@ -413,11 +398,6 @@
 
   </div>
 
-  <div class="price-reveal-row side-right" id="priceRevealRow">
-    <p>Toda entrada aberta neste momento tem uma condição especial de lançamento:</p>
-    <button class="btn" id="revealPricesBtn">Ver condição de lançamento</button>
-  </div>
-
   <div class="addon glass side-left">
     <div class="addon-head">
       <h3>+ Acompanhamento Médico</h3>
@@ -425,9 +405,9 @@
     </div>
     <p>Disponível em qualquer plano. Um médico do time entra no seu acompanhamento.</p>
     <div class="addon-prices">
-      <div><span>Basic</span>+ R$750 no ciclo</div>
-      <div><span>Advanced</span>+ R$1.500 no ciclo</div>
-      <div><span>Pro</span>+ R$2.500 no ciclo</div>
+      <div><span>Basic</span>+ R$1.250 no ciclo</div>
+      <div><span>Advanced</span>+ R$2.000 no ciclo</div>
+      <div><span>Pro</span>+ R$3.000 no ciclo</div>
     </div>
   </div>
 
@@ -508,13 +488,6 @@
   resizeCanvas();
 })();
 
-  var revealBtn = document.getElementById('revealPricesBtn');
-  var plansEl = document.getElementById('plans');
-  revealBtn.addEventListener('click', function(){
-    var nowRevealed = plansEl.classList.toggle('revealed');
-    revealBtn.textContent = nowRevealed ? 'Ocultar condição de lançamento' : 'Ver condição de lançamento';
-  });
-
   var revealObserver = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if (entry.isIntersecting) {
@@ -552,10 +525,6 @@
 (function(){
   var params = new URLSearchParams(location.search);
   if (params.get('lead') !== '1') return;
-  var plansEl = document.getElementById('plans');
-  if (plansEl) plansEl.classList.add('revealed');
-  var revealRow = document.getElementById('priceRevealRow');
-  if (revealRow) revealRow.style.display = 'none';
   var waLink = 'https://wa.me/5511916963672?text=' + encodeURIComponent('Olá, vim pelo site do Nexxo e quero mais informações sobre o acompanhamento.');
   document.querySelectorAll('.cta .btn').forEach(function(btn){
     btn.setAttribute('href', waLink);
