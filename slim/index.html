@@ -547,5 +547,23 @@
     });
   });
 </script>
+
+<script>
+(function(){
+  var params = new URLSearchParams(location.search);
+  if (params.get('lead') !== '1') return;
+  var plansEl = document.getElementById('plans');
+  if (plansEl) plansEl.classList.add('revealed');
+  var revealRow = document.getElementById('priceRevealRow');
+  if (revealRow) revealRow.style.display = 'none';
+  var waLink = 'https://wa.me/5511916963672?text=' + encodeURIComponent('Olá, vim pelo site do Nexxo e quero mais informações sobre o acompanhamento.');
+  document.querySelectorAll('.cta .btn').forEach(function(btn){
+    btn.setAttribute('href', waLink);
+    btn.textContent = 'Falar no WhatsApp';
+    btn.setAttribute('target', '_blank');
+    btn.setAttribute('rel', 'noopener');
+  });
+})();
+</script>
 </body>
 </html>
