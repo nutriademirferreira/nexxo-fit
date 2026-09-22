@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nexxo · app</title>
+  <!-- nexxo.fit/app → a tela de entrada do app do paciente, já com a marca Nexxo.
+       Três caminhos para o mesmo destino, do mais rápido ao mais garantido:
+       1. o JS abaixo, que preserva qualquer parâmetro da URL e usa replace() para o
+          botão "voltar" não cair aqui de novo;
+       2. o meta refresh, para quem está sem JS;
+       3. o link visível, para quem está sem os dois. -->
+  <meta http-equiv="refresh" content="0; url=https://rastreamentometabolico.live/app?marca=nexxo">
+  <meta name="robots" content="noindex">
+  <style>
+    html, body { margin: 0; min-height: 100%; background: #0E1416; color: #E7ECEA;
+      font: 17px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    main { min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 24px; }
+    a { color: #E7ECEA; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>Abrindo o seu app…<br>
+      <a href="https://rastreamentometabolico.live/app?marca=nexxo">Toque aqui se não abrir sozinho.</a>
+    </p>
+  </main>
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      q.set("marca", "nexxo");
+      location.replace("https://rastreamentometabolico.live/app?" + q.toString() + location.hash);
+    })();
+  </script>
+</body>
+</html>
